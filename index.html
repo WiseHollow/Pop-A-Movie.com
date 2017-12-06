@@ -17,45 +17,18 @@
     <script src="/js/view/video.js"></script>
     <script src="/js/mousewheel.js"></script>
     <script src="/js/jscrollpane.js"></script>
+
+    <script>
+      $(function() {
+        $("#nav").load("/includes/nav.html");
+      });
+    </script>
+
   </head>
 
   <body class="text-white" style="background-color: #262626;">
     <!-- Navbar -->
-    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-      <a class="navbar-brand" href="#"><img src="http://via.placeholder.com/200x60"></a>
-
-      <div class="seperator"> </div>
-
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#categories">Categories</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#about">About</a>
-          </li>
-          <!--<li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>-->
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <div class="form-group">
-            <input class="form-control mr-sm-2" type="text" placeholder="&#xf002; Search">
-          </div>
-        </form>
-      </div>
-    </nav>
+    <div id="nav"></div>
 
     <div class="container-fluid">
       <!-- Featured Films -->
