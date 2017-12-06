@@ -1,0 +1,84 @@
+.video-thumbnail-large {
+  margin: 0px 10px 0px 10px;
+}
+
+.card-img-top {
+  padding: 10px 0px 0px 10px;
+}
+
+.video-thumbnail-large {
+  margin: 3px;
+}
+
+.scroll-pane {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.nav-link.active.text-white {
+  background-color: #434343;
+  border-color: #434343;
+}
+
+.nav.nav-tabs {
+  border-bottom-color: #434343;
+}
+
+.card {
+  width: 100% auto;
+  margin: 35px 10px 0px 10px;
+}
+
+.card-title {
+  border-radius: 6px;
+  text-transform: uppercase;
+  height: 100% auto;
+  background-color: #79c142;
+  padding: 5px 12px 5px 12px;
+  margin: 0px 8px 0 8px;
+  font-size: 18px;
+}
+
+.tag {
+  cursor: pointer;
+  padding: 3px 12px 3px 12px;
+  border: solid 1px;
+  border-radius: 24px;
+  border-color: #444444;
+  background-color: #272727;
+  color: #4d5545;
+  margin: 0px 10px 0px 10px;
+}
+
+.tag:hover {
+  color: #79c142;
+}
+
+.social-media-item {
+  margin: 0px 5px 0px 5px;
+  text-decoration: none;
+}
+
+.footer {
+  padding: 20px 0px 20px 0px;
+}
+
+a {
+  color: #ffffff;
+}
+
+a:hover {
+  color: #cdcdcd;
+}
+
+body {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+input {
+  padding: 10px;
+  font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
