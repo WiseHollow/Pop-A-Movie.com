@@ -22,8 +22,6 @@
     <script>
       $(function() {
         $("#nav").load("/includes/nav.html");
-      });
-      $(function() {
         $("#footer").load("/includes/footer.html");
       });
     </script>
