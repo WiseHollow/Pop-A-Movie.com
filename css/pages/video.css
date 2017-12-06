@@ -1,0 +1,35 @@
+.card-video-title {
+  text-transform: uppercase;
+  height: 100% auto;
+  padding: 5px 12px 5px 12px;
+  margin: 0px 8px 0 8px;
+  font-size: 18px;
+}
+
+.video-description {
+  margin: 12px 0px 0px 0px;
+}
+
+.fa-share-square-o {
+  cursor: pointer;
+}
+
+.fa-share-square-o:hover {
+  color: #cdcdcd;
+}
+
+.fa-thumbs-up {
+  cursor: pointer;
+}
+
+.fa-thumbs-down {
+  cursor: pointer;
+}
+
+.fa-thumbs-up:hover {
+  color: #5564d2;
+}
+
+.fa-thumbs-down:hover {
+  color: #d25555;
+}
