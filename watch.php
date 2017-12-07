@@ -5,6 +5,7 @@ if (isset($_GET['id'])) {
   $id = explode('.', $_GET['id'])[0];
   if ($id != '' && is_numeric($id)) {
     $movie = getMovie($conn, $id);
+    $trailer = getTrailer($conn, $id);
     $genres_array = getGenres($conn, $id);
     $genres = implode(', ', $genres_array);
     if (!isset($movie['title'])) {
@@ -35,10 +36,10 @@ function goHome() {
     <link href="/css/jscrollpane.css" rel="stylesheet">
     <link href="/css/navbar.css" rel="stylesheet">
     <link href="/css/base.css" rel="stylesheet">
-    <link href="/css/pages/video.css" rel="stylesheet">
+    <link href="/css/pages/watch.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
 
-    <script src="/js/popper.js"></script>
+    <script src="/js/popper.min.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/view/video.js"></script>
@@ -49,6 +50,16 @@ function goHome() {
       $(function() {
         $("#nav").load("/includes/nav.html");
         $("#footer").load("/includes/footer.html");
+      });
+      $(document).on("click", function(e) {
+        if ($(e.target).is('#trailer-back')) {
+          $('#trailer-back').toggle();
+          $('#trailer-div').toggle();
+        } else {}
+          if ($(e.target).is('#trailer-btn')) {
+            $('#trailer-back').toggle();
+            $('#trailer-div').toggle();
+          } else {}
       });
     </script>
 
@@ -99,8 +110,11 @@ function goHome() {
               <i class="fa fa-thumbs-up fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> <?php echo(isset($movie['thumbs_up']) ? $movie['thumbs_up'] : '0'); ?> </span></i> &nbsp;
               <i class="fa fa-thumbs-down fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> <?php echo(isset($movie['thumbs_down']) ? $movie['thumbs_down'] : '0'); ?> </span></i>
             </div>
-            <div class="col-8">
+            <div class="col-6">
               <i class="fa fa-share-square-o fa-2x" aria-hidden="true">Share</i>
+            </div>
+            <div class="col-2">
+              <input class="btn btn-primary btn-block" type="button" value="Watch Trailer" id="trailer-btn">
             </div>
           </div>
           <div class="row video-description">
@@ -137,6 +151,11 @@ function goHome() {
 
     <!-- Footer -->
     <div id="footer"></div>
+
+    <div class="trailer-back" id="trailer-back"></div>
+    <div class="trailer" id="trailer-div" align="center">
+      <iframe src="<?php echo($trailer); ?>" scrolling="no" frameborder="0" width="800" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+    </div>
 
     <script>
       $(function() {

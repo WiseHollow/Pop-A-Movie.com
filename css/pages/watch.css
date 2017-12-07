@@ -33,3 +33,28 @@
 .fa-thumbs-down:hover {
   color: #d25555;
 }
+
+.trailer-back {
+  position: fixed;
+  padding: 0px;
+  margin: 0px;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 80;
+  display: none;
+}
+
+.trailer {
+  position: fixed;
+  width: 800px;
+  height: 480px;
+  left: 50%;
+  top: 50%;
+  margin-left: -400px;
+  margin-top: -240px;
+  z-index: 100;
+  display: none;
+}

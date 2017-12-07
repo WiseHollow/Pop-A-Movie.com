@@ -10,7 +10,7 @@ function getMovie($conn, $id) {
   // Here is the sql for ratings when we want it. JOIN videos_ratings ON videos.id = videos_ratings.id
   $sql = $conn->prepare('SELECT * FROM videos
     JOIN videos_description ON videos.id = videos_description.id
-    JOIN videos_urls ON videos.id = videos_urls.video_id
+    JOIN videos_urls ON videos.id = videos_urls.id
     WHERE videos.id = ? AND active = 1');
   $sql->bind_param('i', $id);
   $sql->execute();
@@ -90,6 +90,19 @@ function incrementViews($conn, $id) {
   $sql = $conn->prepare('UPDATE videos SET views = views + 1 WHERE videos.id = ?');
   $sql->bind_param('i', $id);
   $sql->execute();
+}
+
+function getTrailer($conn, $id) {
+  $sql = $conn->prepare('SELECT url FROM videos_trailers WHERE id = ?');
+  $sql->bind_param('i', $id);
+  $sql->execute();
+  $result = $sql->get_result();
+  $trailer = '';
+  while ($row = $result->fetch_assoc()) {
+    $trailer = $row['url'];
+    break;
+  }
+  return $trailer;
 }
 
 function thumbsUp($conn, $id) {

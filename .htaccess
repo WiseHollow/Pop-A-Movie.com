@@ -9,3 +9,4 @@ RewriteRule ^(.*)$ $1.php
 RewriteRule ^search/(.*)$ ./search.php?query=$1
 RewriteRule ^watch/(.*)$ ./watch.php?id=$1
 RewriteRule ^genres/(.*)$ ./genres.php?genre=$1.php
+RewriteRule ^add-movie/(.*)$ ./add-movie.php?title=$1&url=$2&language=$3&description=$4&genres=$5&thumbnail=$6&active=$7.php

@@ -19,7 +19,9 @@ function getGenreId($conn, $genre) {
 }
 
 function getAllGenres($conn) {
-  $sql = "SELECT genre from genres WHERE hidden = 0";
+  $sql = "SELECT genre from genres
+  WHERE hidden = 0
+  ORDER BY genre ASC";
   $result = $conn->query($sql);
 
   if (!$result) {
