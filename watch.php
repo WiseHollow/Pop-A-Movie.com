@@ -114,7 +114,7 @@ function goHome() {
               <i class="fa fa-share-square-o fa-2x" aria-hidden="true">Share</i>
             </div>
             <div class="col-2">
-              <input class="btn btn-primary btn-block" type="button" value="Watch Trailer" id="trailer-btn">
+              <?php echo($trailer != '' ? '<input class="btn btn-primary btn-block" type="button" value="Watch Trailer" id="trailer-btn">' : ''); ?>
             </div>
           </div>
           <div class="row video-description">
