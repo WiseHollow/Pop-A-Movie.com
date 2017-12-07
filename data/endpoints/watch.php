@@ -55,6 +55,33 @@ function getGenres($conn, $id) {
   return $genres;
 }
 
+function getSimilarMovies($conn, $genres) {
+  $inArray = array();
+  foreach ($genres as $genre) {
+    array_push($inArray, "'" . $genre . "'");
+  }
+  $in = implode(', ', $inArray);
+
+  $sql = 'SELECT DISTINCT v.id, title, thumbnail
+    FROM videos v
+    JOIN videos_genres vg ON vg.video_id = v.id
+    JOIN videos_thumbnails vt ON vt.id = v.id
+    WHERE vg.genre_id IN
+    (
+      SELECT g.id
+      FROM genres g
+      WHERE g.genre IN (' . $in . ')
+    )';
+  $result = $conn->query($sql);
+  $movies = array();
+  if ($result) {
+    while ($row = $result->fetch_assoc()) {
+      array_push($movies, $row);
+    }
+  }
+  return $movies;
+}
+
 function getTags($conn, $id) {
 
 }

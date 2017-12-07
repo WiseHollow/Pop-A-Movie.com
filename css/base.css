@@ -11,8 +11,14 @@
 }
 
 .scroll-pane {
+  overflow-y: hidden;
   overflow-x: auto;
   white-space: nowrap;
+}
+
+.movie-thumbnail {
+  width: 170px;
+  height: 260px;
 }
 
 .nav-link.active.text-white {

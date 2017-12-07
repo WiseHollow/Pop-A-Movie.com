@@ -5,7 +5,8 @@ if (isset($_GET['id'])) {
   $id = explode('.', $_GET['id'])[0];
   if ($id != '' && is_numeric($id)) {
     $movie = getMovie($conn, $id);
-    $genres = implode(', ', getGenres($conn, $id));
+    $genres_array = getGenres($conn, $id);
+    $genres = implode(', ', $genres_array);
     if (!isset($movie['title'])) {
       goHome();
     }
@@ -116,23 +117,21 @@ function goHome() {
     <div class="card bg-inverse text-white">
       <ul class="nav nav-tabs" role="tablist">
         <span class="card-title align-middle">
-          Related Movies & Shows &nbsp;
+          Similar Movies To Watch &nbsp;
           <i class="fa fa-angle-right" aria-hidden="true"></i>
         </span>
       </ul>
 
-      <!-- Tab panes -->
-      <div class="tab-content card-block" align="center">
-        <div class="tab-pane active" id="home" role="tabpanel">
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-        </div>
+      <div class="scroll-pane" style="height: 330px;">
+        <?php
+        $movies = getSimilarMovies($conn, $genres_array);
+        foreach ($movies as $movie) {
+          echo('<figure class="figure">');
+          echo('<a href="/watch/' . $movie['id'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
+          echo('<figcaption class="figure-caption"><a href="/watch/' . $movie['id'] . '">' . $movie['title'] . '</a></figcaption>');
+          echo('</figure>');
+        }
+        ?>
       </div>
     </div>
 
