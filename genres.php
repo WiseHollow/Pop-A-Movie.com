@@ -6,6 +6,7 @@ if (isset($_GET["genre"])) {
   $movies = getMovies($conn, $genre);
 } else {
   $genres = getAllGenres($conn);
+  $thumbnails = getAllGenreThumbnails($conn);
 }
 ?>
 
@@ -61,8 +62,8 @@ if (isset($_GET["genre"])) {
             for ($x = 0; $x < sizeof($genres); $x++) {
               // Lets create all the thumbnails for each genre
               // echo($genres[$x] . "<br>");
-              echo('<figure class="figure" style="margin: 12px 4px 12px 4px;">');
-              echo('<a href="/genres/' . $genres[$x] . '"><img src="http://via.placeholder.com/170x260" class="figure-img img-fluid rounded"></a>');
+              echo('<figure class="figure">');
+              echo('<a href="/genres/' . $genres[$x] . '"><img src="' . generateThumbnailUrl($genres[$x], $thumbnails) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
               echo('<figcaption class="figure-caption"><a href="#">' . $genres[$x] . '</a></figcaption>');
               echo('</figure>');
             }

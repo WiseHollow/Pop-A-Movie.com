@@ -3,6 +3,21 @@
 require('data/connection.php');
 $conn = getConnection();
 
+function getGenreId($conn, $genre) {
+  // Prepare to get the genre id of the given genre string.
+  $sql = $conn->prepare('SELECT id FROM genres WHERE genres.genre = ?');
+  $sql->bind_param('s', $genre);
+  $sql->execute();
+  $result = $sql->get_result();
+  $genre_id = '';
+  // We will get the id of the genre we specified.
+  while($row = $result->fetch_assoc()) {
+    $genre_id = $row["id"];
+    break;
+  }
+  return $genre_id;
+}
+
 function getAllGenres($conn) {
   $sql = "SELECT genre from genres";
   $result = $conn->query($sql);
@@ -20,19 +35,19 @@ function getAllGenres($conn) {
   }
 }
 
-function getGenreId($conn, $genre) {
-  // Prepare to get the genre id of the given genre string.
-  $sql = $conn->prepare('SELECT id FROM genres WHERE genres.genre = ?');
-  $sql->bind_param('s', $genre);
+function getAllGenreThumbnails($conn) {
+  $sql = $conn->prepare('SELECT genre, thumbnail FROM genres
+    JOIN genres_thumbnails ON genres_thumbnails.id = genres.id');
   $sql->execute();
   $result = $sql->get_result();
-  $genre_id = '';
-  // We will get the id of the genre we specified.
+
+  $thumbnails = array();
+
   while($row = $result->fetch_assoc()) {
-    $genre_id = $row["id"];
-    break;
+    $thumbnails[$row['genre']] = $row['thumbnail'];
   }
-  return $genre_id;
+
+  return $thumbnails;
 }
 
 function getMovies($conn, $genre) {
@@ -53,6 +68,14 @@ function getMovies($conn, $genre) {
   }
 
   return $videos;
+}
+
+function generateThumbnailUrl($genre, $thumbnails) {
+  if (isset($thumbnails[$genre])) {
+    return 'data:image/jpeg;base64,' . base64_encode($thumbnails[$genre]);
+  } else {
+    return 'http://via.placeholder.com/170x260';
+  }
 }
 
 ?>
