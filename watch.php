@@ -104,6 +104,8 @@ function goHome() {
           </div>
           <div class="row video-description">
             <p class="card-text">Description: <?php echo($movie['description']); ?></p>
+          </div>
+          <div class="row video-description">
             <p class="card-text">Genres: <?php echo($genres); ?></p>
           </div>
         </div>
