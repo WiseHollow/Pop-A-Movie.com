@@ -1,3 +1,19 @@
+<?php
+require('data/endpoints/watch.php');
+if (isset($_GET['id'])) {
+  $id = explode('.', $_GET['id'])[0];
+  if ($id != '' && is_numeric($id)) {
+    $movie = getMovie($id);
+  } else {
+    header('Location: /');
+  }
+} else {
+  header('Location: /');
+}
+
+
+?>
+
 <html lang="en">
 
   <head>
@@ -41,13 +57,14 @@
           <i class="fa fa-angle-right" aria-hidden="true"></i>
         </span>
         <span class="card-video-title">
-          Title
+          <?php echo(isset($movie) && isset($movie['title']) ? $movie['title'] : 'TITLE');  ?>
         </span>
       </ul>
 
       <div class="tab-content card-block" align="center">
         <div class="tab-pane active" id="home" role="tabpanel">
-          <img class="video-thumbnail-large" src="http://via.placeholder.com/1280x720">
+          <!--<img class="video-thumbnail-large" src="http://via.placeholder.com/1280x720">-->
+          <iframe src="<?php echo(isset($movie) && isset($movie['url']) ? $movie['url'] : ''); ?>" scrolling="no" frameborder="0" width="1280" height="720" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
         </div>
       </div>
     </div>
@@ -77,16 +94,7 @@
             </div>
           </div>
           <div class="row video-description">
-            <p class="card-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse facilisis lacus enim, in rutrum nulla pretium ut. Praesent laoreet hendrerit dolor. Maecenas volutpat convallis tristique. Mauris mauris augue, sollicitudin sed porttitor quis, mollis
-              porta quam. Nullam vel rutrum elit. Morbi feugiat sit amet arcu id posuere. Nullam rhoncus justo nec metus posuere facilisis sed eget elit. Curabitur porta, tellus eget aliquet sollicitudin, purus nulla molestie est, ac egestas nunc augue
-              id est. Pellentesque mollis ex eu neque accumsan, quis vehicula tellus placerat. Nunc nec orci vel urna sodales ornare id vitae neque. Aenean felis libero, ornare sit amet porta et, fringilla quis eros. Nunc ut suscipit nibh.</p>
-            <p class="card-text">
-              In dignissim, nisi in pharetra tincidunt, diam nisl imperdiet elit, ut placerat metus sapien laoreet augue. Nunc varius urna quis lectus rhoncus, eu ullamcorper ex congue. In commodo, nulla et pulvinar euismod, est massa consequat erat, id venenatis nisl
-              velit in nulla. Vivamus mi neque, accumsan cursus est quis, placerat ornare massa. Praesent quis erat sed eros gravida mattis. Ut sed tortor pharetra, cursus massa in, euismod enim. Curabitur bibendum sodales quam ut efficitur. Duis sit
-              amet est sodales lorem aliquet maximus. Curabitur lacinia metus nec erat imperdiet, et lacinia enim maximus. Morbi velit eros, luctus ut viverra vitae, viverra id magna. Etiam at mi consectetur diam blandit luctus. In quis malesuada quam.
-              Maecenas enim nibh, finibus sit amet eleifend a, condimentum eget sapien. Nulla posuere urna sit amet rhoncus lacinia. Sed consequat ante nisi, nec posuere odio maximus ac. Vestibulum id molestie lacus.
-            </p>
+            <p class="card-text"><?php echo(isset($movie) && isset($movie['description']) ? $movie['description'] : ''); ?></p>
           </div>
         </div>
       </div>

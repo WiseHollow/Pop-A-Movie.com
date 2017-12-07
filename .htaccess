@@ -7,4 +7,5 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteRule ^(.*)$ $1.php
 
 RewriteRule ^search/(.*)$ ./search.php?query=$1
-RewriteRule ^video/(.*)$ ./video.php?id=$1
+RewriteRule ^watch/(.*)$ ./watch.php?id=$1
+RewriteRule ^genres/(.*)$ ./genres.php?genre=$1.php
