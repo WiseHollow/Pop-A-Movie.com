@@ -95,8 +95,8 @@ function goHome() {
               <h3><?php echo($movie['views']); ?> Views</h3>
             </div>
             <div class="col-2">
-              <i class="fa fa-thumbs-up fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> <?php echo($movie['thumbs_up']); ?> </span></i> &nbsp;
-              <i class="fa fa-thumbs-down fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> <?php echo($movie['thumbs_down']); ?> </span></i>
+              <i class="fa fa-thumbs-up fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> <?php echo(isset($movie['thumbs_up']) ? $movie['thumbs_up'] : '0'); ?> </span></i> &nbsp;
+              <i class="fa fa-thumbs-down fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> <?php echo(isset($movie['thumbs_down']) ? $movie['thumbs_down'] : '0'); ?> </span></i>
             </div>
             <div class="col-8">
               <i class="fa fa-share-square-o fa-2x" aria-hidden="true">Share</i>

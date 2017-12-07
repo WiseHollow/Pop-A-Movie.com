@@ -7,9 +7,9 @@ $conn = getConnection();
 
 function getMovie($conn, $id) {
   // Prepare statement to get all data related to video of id.
+  // Here is the sql for ratings when we want it. JOIN videos_ratings ON videos.id = videos_ratings.id
   $sql = $conn->prepare('SELECT * FROM videos
     JOIN videos_description ON videos.id = videos_description.id
-    JOIN videos_ratings ON videos.id = videos_ratings.id
     JOIN videos_urls ON videos.id = videos_urls.video_id
     WHERE videos.id = ? AND active = 1');
   $sql->bind_param('i', $id);
