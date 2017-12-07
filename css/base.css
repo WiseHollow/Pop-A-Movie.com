@@ -6,10 +6,6 @@
   padding: 10px 0px 0px 10px;
 }
 
-.video-thumbnail-large {
-  margin: 3px;
-}
-
 .scroll-pane {
   overflow-y: hidden;
   overflow-x: auto;
@@ -19,6 +15,13 @@
 .movie-thumbnail {
   width: 170px;
   height: 260px;
+  margin: 0px;
+}
+
+.title {
+  max-width: 160px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .nav-link.active.text-white {

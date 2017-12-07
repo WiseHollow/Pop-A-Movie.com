@@ -1,3 +1,10 @@
+<?php
+
+require('data/endpoints/home.php');
+$most_viewed = getMostViewedMovies($conn);
+$latest_movies = getLatestMovies($conn);
+?>
+
 <html lang="en">
 
   <head>
@@ -77,22 +84,14 @@
         <!-- Tab panes -->
         <div class="tab-content card-block" align="center">
           <div class="tab-pane active" id="home" role="tabpanel">
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
+            <?php
+            foreach ($most_viewed as $movie) {
+              echo('<figure class="figure">');
+              echo('<a href="/watch/' . $movie['id'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
+              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['id'] . '">' . $movie['title'] . '</a></figcaption>');
+              echo('</figure>');
+            }
+            ?>
           </div>
           <div class="tab-pane" id="profile" role="tabpanel">
             <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
@@ -165,22 +164,14 @@
         <!-- Tab panes -->
         <div class="tab-content card-block" align="center">
           <div class="tab-pane active" id="home" role="tabpanel">
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
+            <?php
+            foreach ($latest_movies as $movie) {
+              echo('<figure class="figure">');
+              echo('<a href="/watch/' . $movie['id'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
+              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['id'] . '">' . $movie['title'] . '</a></figcaption>');
+              echo('</figure>');
+            }
+            ?>
           </div>
         </div>
       </div>
