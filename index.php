@@ -3,6 +3,7 @@
 require('data/endpoints/home.php');
 $most_viewed = getMostViewedMovies($conn);
 $latest_movies = getLatestMovies($conn);
+$featured_movies = getFeaturedMovies($conn);
 ?>
 
 <html lang="en">
@@ -48,12 +49,17 @@ $latest_movies = getLatestMovies($conn);
         </span>
         </ul>
         <div class="scroll-pane">
+          <?php
+          foreach ($featured_movies as $movie) {
+            echo('<a href="/watch/' . $movie['id'] . '"><img class="video-thumbnail-large" src="data:image/jpeg;base64,' . base64_encode($movie['image']) . '"></a>');
+          }
+          ?>
+          <!-- <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
           <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
           <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
           <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
           <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
+          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a> -->
         </div>
       </div>
 

@@ -37,4 +37,16 @@ function getLatestMovies($conn) {
   return $movies;
 }
 
+function getFeaturedMovies($conn) {
+  $sql = 'SELECT * FROM videos_featured';
+  $result = $conn->query($sql);
+  $movies = array();
+  if ($result) {
+    while ($row = $result->fetch_assoc()) {
+      array_push($movies, $row);
+    }
+  }
+  return $movies;
+}
+
 ?>
