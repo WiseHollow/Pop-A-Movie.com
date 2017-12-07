@@ -1,9 +1,9 @@
 <?php
 
 require('data/connection.php');
+$conn = getConnection();
 
-function getGenres() {
-  $conn = getConnection();
+function getAllGenres($conn) {
   $sql = "SELECT genre from genres";
   $result = $conn->query($sql);
 
@@ -20,8 +20,7 @@ function getGenres() {
   }
 }
 
-function getMovies($genre) {
-  $conn = getConnection();
+function getGenreId($conn, $genre) {
   // Prepare to get the genre id of the given genre string.
   $sql = $conn->prepare('SELECT id FROM genres WHERE genres.genre = ?');
   $sql->bind_param('s', $genre);
@@ -33,11 +32,17 @@ function getMovies($genre) {
     $genre_id = $row["id"];
     break;
   }
+  return $genre_id;
+}
+
+function getMovies($conn, $genre) {
+  $genre_id = getGenreId($conn, $genre);
   // Prepare to get all movies with that genre id.
   $sql = $conn->prepare('SELECT * FROM videos
     JOIN videos_genres ON videos_genres.genre_id = ?
     JOIN videos_thumbnails ON videos_thumbnails.id = videos_genres.video_id
-    WHERE videos.id = videos_genres.video_id');
+    WHERE videos.id = videos_genres.video_id
+    AND videos.active = 1');
   $sql->bind_param('i', $genre_id);
   $sql->execute();
   $result = $sql->get_result();

@@ -3,9 +3,9 @@ require('data/endpoints/genres.php');
 $genre = "Genres"; // No genre defined yet (Going to list choices).
 if (isset($_GET["genre"])) {
   $genre = explode(".", $_GET["genre"])[0];
-  $movies = getMovies($genre);
+  $movies = getMovies($conn, $genre);
 } else {
-  $genres = getGenres();
+  $genres = getAllGenres($conn);
 }
 ?>
 

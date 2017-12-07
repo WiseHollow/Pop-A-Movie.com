@@ -1,13 +1,22 @@
 <?php
 require('data/endpoints/watch.php');
+
 if (isset($_GET['id'])) {
   $id = explode('.', $_GET['id'])[0];
   if ($id != '' && is_numeric($id)) {
-    $movie = getMovie($id);
+    $movie = getMovie($conn, $id);
+    $genres = implode(', ', getGenres($conn, $id));
+    if (!isset($movie['title'])) {
+      goHome();
+    }
   } else {
-    header('Location: /');
+    goHome();
   }
 } else {
+  goHome();
+}
+
+function goHome() {
   header('Location: /');
 }
 
@@ -57,14 +66,14 @@ if (isset($_GET['id'])) {
           <i class="fa fa-angle-right" aria-hidden="true"></i>
         </span>
         <span class="card-video-title">
-          <?php echo(isset($movie) && isset($movie['title']) ? $movie['title'] : 'TITLE');  ?>
+          <?php echo($movie['title']);  ?>
         </span>
       </ul>
 
       <div class="tab-content card-block" align="center">
         <div class="tab-pane active" id="home" role="tabpanel">
           <!--<img class="video-thumbnail-large" src="http://via.placeholder.com/1280x720">-->
-          <iframe src="<?php echo(isset($movie) && isset($movie['url']) ? $movie['url'] : ''); ?>" scrolling="no" frameborder="0" width="1280" height="720" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+          <iframe src="<?php echo($movie['url']); ?>" scrolling="no" frameborder="0" width="1280" height="720" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
         </div>
       </div>
     </div>
@@ -83,18 +92,19 @@ if (isset($_GET['id'])) {
         <div class="tab-pane active text-muted">
           <div class="row">
             <div class="col-2">
-              <h3>483 Views</h3>
+              <h3><?php echo($movie['views']); ?> Views</h3>
             </div>
             <div class="col-2">
-              <i class="fa fa-thumbs-up fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> 63 </span></i> &nbsp;
-              <i class="fa fa-thumbs-down fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> 1 </span></i>
+              <i class="fa fa-thumbs-up fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> <?php echo($movie['thumbs_up']); ?> </span></i> &nbsp;
+              <i class="fa fa-thumbs-down fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> <?php echo($movie['thumbs_down']); ?> </span></i>
             </div>
             <div class="col-8">
               <i class="fa fa-share-square-o fa-2x" aria-hidden="true">Share</i>
             </div>
           </div>
           <div class="row video-description">
-            <p class="card-text"><?php echo(isset($movie) && isset($movie['description']) ? $movie['description'] : ''); ?></p>
+            <p class="card-text">Description: <?php echo($movie['description']); ?></p>
+            <p class="card-text">Genres: <?php echo($genres); ?></p>
           </div>
         </div>
       </div>
