@@ -55,21 +55,21 @@ function getAllGenreThumbnails($conn) {
 function getMovies($conn, $genre) {
   $genre_id = getGenreId($conn, $genre);
   // Prepare to get all movies with that genre id.
-  $sql = $conn->prepare('SELECT * FROM videos
-    JOIN videos_genres ON videos_genres.genre_id = ?
-    JOIN videos_thumbnails ON videos_thumbnails.id = videos_genres.video_id
-    WHERE videos.id = videos_genres.video_id
-    AND videos.active = 1');
+  $sql = $conn->prepare('SELECT * FROM movies
+    JOIN movies_genres ON movies_genres.genre_id = ?
+    JOIN movies_thumbnails ON movies_thumbnails.id = movies_genres.movie_id
+    WHERE movies.id = movies_genres.movie_id
+    AND movies.active = 1');
   $sql->bind_param('i', $genre_id);
   $sql->execute();
   $result = $sql->get_result();
-  $videos = array();
+  $movies = array();
   // We will get all of the movies of the genre given.
   while($row = $result->fetch_assoc()) {
-    array_push($videos, $row);
+    array_push($movies, $row);
   }
 
-  return $videos;
+  return $movies;
 }
 
 function generateThumbnailUrl($genre, $thumbnails) {

@@ -6,40 +6,40 @@ require('data/connection.php');
 $conn = getConnection();
 
 function getMovie($conn, $id) {
-  // Prepare statement to get all data related to video of id.
-  // Here is the sql for ratings when we want it. JOIN videos_ratings ON videos.id = videos_ratings.id
-  $sql = $conn->prepare('SELECT * FROM videos
-    JOIN videos_description ON videos.id = videos_description.id
-    JOIN videos_urls ON videos.id = videos_urls.id
-    WHERE videos.id = ? AND active = 1');
+  // Prepare statement to get all data related to movie of id.
+  // Here is the sql for ratings when we want it. JOIN movies_ratings ON movies.id = movies_ratings.id
+  $sql = $conn->prepare('SELECT * FROM movies
+    JOIN movies_description ON movies.id = movies_description.id
+    JOIN movies_urls ON movies.id = movies_urls.id
+    WHERE movies.id = ? AND active = 1');
   $sql->bind_param('i', $id);
   $sql->execute();
   $result = $sql->get_result();
 
   // Create variable to store movie data.
-  $video = array();
+  $movie = array();
 
   while ($row = $result->fetch_assoc()) {
     // Store movie data and break out of loop. Should only be 1 result.
-    $video = $row;
+    $movie = $row;
     break;
   }
 
   // We must increment our movie views on the server, plus what is being sent to the client.
   // First we have to check if the movie data was populated.
-  if (isset($video['views'])) {
+  if (isset($movie['views'])) {
     incrementViews($conn, $id);
-    $video['views'] = $video['views'] + 1;
+    $movie['views'] = $movie['views'] + 1;
   }
 
   // Return movie.
-  return $video;
+  return $movie;
 }
 
 function getGenres($conn, $id) {
   $sql = $conn->prepare('SELECT genre FROM genres
-    JOIN videos_genres ON videos_genres.video_id = ?
-    WHERE genres.id = videos_genres.genre_id');
+    JOIN movies_genres ON movies_genres.movie_id = ?
+    WHERE genres.id = movies_genres.genre_id');
   $sql->bind_param('i', $id);
   $sql->execute();
   $result = $sql->get_result();
@@ -63,9 +63,9 @@ function getSimilarMovies($conn, $genres) {
   $in = implode(', ', $inArray);
 
   $sql = 'SELECT DISTINCT v.id, title, thumbnail
-    FROM videos v
-    JOIN videos_genres vg ON vg.video_id = v.id
-    JOIN videos_thumbnails vt ON vt.id = v.id
+    FROM movies v
+    JOIN movies_genres vg ON vg.movie_id = v.id
+    JOIN movies_thumbnails vt ON vt.id = v.id
     WHERE vg.genre_id IN
     (
       SELECT g.id
@@ -87,13 +87,13 @@ function getTags($conn, $id) {
 }
 
 function incrementViews($conn, $id) {
-  $sql = $conn->prepare('UPDATE videos SET views = views + 1 WHERE videos.id = ?');
+  $sql = $conn->prepare('UPDATE movies SET views = views + 1 WHERE movies.id = ?');
   $sql->bind_param('i', $id);
   $sql->execute();
 }
 
 function getTrailer($conn, $id) {
-  $sql = $conn->prepare('SELECT url FROM videos_trailers WHERE id = ?');
+  $sql = $conn->prepare('SELECT url FROM movies_trailers WHERE id = ?');
   $sql->bind_param('i', $id);
   $sql->execute();
   $result = $sql->get_result();

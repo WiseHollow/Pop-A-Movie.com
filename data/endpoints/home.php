@@ -4,9 +4,9 @@ require('data/connection.php');
 $conn = getConnection();
 
 function getMostViewedMovies($conn) {
-  $sql = 'SELECT videos.id, views, title, thumbnail
-    FROM videos
-    JOIN videos_thumbnails ON videos_thumbnails.id = videos.id
+  $sql = 'SELECT movies.id, views, title, thumbnail
+    FROM movies
+    JOIN movies_thumbnails ON movies_thumbnails.id = movies.id
     ORDER BY views DESC
     LIMIT 20';
 
@@ -21,9 +21,9 @@ function getMostViewedMovies($conn) {
 }
 
 function getLatestMovies($conn) {
-  $sql = 'SELECT videos.id, title, thumbnail
-  FROM videos
-  JOIN videos_thumbnails ON videos_thumbnails.id = videos.id
+  $sql = 'SELECT movies.id, title, thumbnail
+  FROM movies
+  JOIN movies_thumbnails ON movies_thumbnails.id = movies.id
   ORDER BY added DESC
   LIMIT 20';
 
@@ -38,7 +38,7 @@ function getLatestMovies($conn) {
 }
 
 function getFeaturedMovies($conn) {
-  $sql = 'SELECT * FROM videos_featured';
+  $sql = 'SELECT * FROM movies_featured';
   $result = $conn->query($sql);
   $movies = array();
   if ($result) {
