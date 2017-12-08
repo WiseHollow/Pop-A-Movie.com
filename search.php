@@ -47,7 +47,7 @@
 
           <h3>Results for: QUERY HERE</h3>
           <figure class="figure">
-            <a href="#"><img src="http://via.placeholder.com/150x150" class="figure-img img-fluid rounded" alt="Movie Title 1"></a>
+            <a href="#"><img src="https://via.placeholder.com/150x150" class="figure-img img-fluid rounded" alt="Movie Title 1"></a>
             <figcaption class="figure-caption title"><a href="#">Movie Title 1</a></figcaption>
             <figcaption class="figure-caption">
               <a href="#">Drama</a>,
@@ -61,7 +61,7 @@
           </figure>
 
           <figure class="figure">
-            <a href="#"><img src="http://via.placeholder.com/150x150" class="figure-img img-fluid rounded" alt="Movie Title 2"></a>
+            <a href="#"><img src="https://via.placeholder.com/150x150" class="figure-img img-fluid rounded" alt="Movie Title 2"></a>
             <figcaption class="figure-caption title"><a href="#">Movie Title 2</a></figcaption>
             <figcaption class="figure-caption">
               <a href="#">Drama</a>,
@@ -75,7 +75,7 @@
           </figure>
 
           <figure class="figure">
-            <a href="#"><img src="http://via.placeholder.com/150x150" class="figure-img img-fluid rounded" alt="Movie Title 3"></a>
+            <a href="#"><img src="https://via.placeholder.com/150x150" class="figure-img img-fluid rounded" alt="Movie Title 3"></a>
             <figcaption class="figure-caption title"><a href="#">Movie Title 3</a></figcaption>
             <figcaption class="figure-caption">
               <a href="#">Drama</a>,

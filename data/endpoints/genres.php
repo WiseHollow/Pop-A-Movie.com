@@ -76,7 +76,7 @@ function generateThumbnailUrl($genre, $thumbnails) {
   if (isset($thumbnails[$genre])) {
     return 'data:image/jpeg;base64,' . base64_encode($thumbnails[$genre]);
   } else {
-    return 'http://via.placeholder.com/170x260';
+    return 'https://via.placeholder.com/170x260';
   }
 }
 

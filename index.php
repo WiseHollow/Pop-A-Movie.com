@@ -3,6 +3,7 @@
 require('data/endpoints/home.php');
 $most_viewed = getMostViewedMovies($conn);
 $latest_movies = getLatestMovies($conn);
+$random_movies = getRandomMovies($conn);
 $featured_movies = getFeaturedMovies($conn);
 ?>
 
@@ -67,12 +68,12 @@ $featured_movies = getFeaturedMovies($conn);
           <li class="nav-item">
             <a class="nav-link active text-white" data-toggle="tab" href="#home" role="tab">Most Viewed</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link text-white" data-toggle="tab" href="#profile" role="tab">Most Favorited</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" data-toggle="tab" href="#messages" role="tab">Top Rated</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link text-white" data-toggle="tab" href="#settings" role="tab">Random</a>
           </li>
@@ -91,58 +92,50 @@ $featured_movies = getFeaturedMovies($conn);
             ?>
           </div>
           <div class="tab-pane" id="profile" role="tabpanel">
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
           </div>
           <div class="tab-pane" id="messages" role="tabpanel">
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
+            <a href="#"><img class="video-thumbnail-large" src="https://via.placeholder.com/200x200"></a>
           </div>
           <div class="tab-pane" id="settings" role="tabpanel">
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
-            <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/200x200"></a>
+            <?php
+            foreach ($random_movies as $movie) {
+              echo('<figure class="figure">');
+              echo('<a href="/watch/' . $movie['id'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
+              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['id'] . '">' . $movie['title'] . '</a></figcaption>');
+              echo('</figure>');
+            }
+            ?>
           </div>
         </div>
       </div>
