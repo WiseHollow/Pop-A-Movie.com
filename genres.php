@@ -27,7 +27,6 @@ if (isset($_GET["genre"])) {
     <script src="/js/popper.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/view/video.js"></script>
     <script src="/js/mousewheel.js"></script>
     <script src="/js/jscrollpane.js"></script>
 
