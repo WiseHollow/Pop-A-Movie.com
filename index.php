@@ -41,14 +41,9 @@ $featured_movies = getFeaturedMovies($conn);
 
     <div class="container-fluid">
       <!-- Featured Films -->
-      <br><br><br><br>
+      <br><br>
       <div class="card bg-inverse text-white">
-        <ul class="nav nav-tabs" role="tablist">
-          <span class="card-title">
-          Featured &nbsp;
-          <i class="fa fa-angle-right" aria-hidden="true"></i>
-        </span>
-        </ul>
+
         <div class="scroll-pane">
           <?php
           for ($index = 0; $index < sizeof($featured_movies); $index++) {
