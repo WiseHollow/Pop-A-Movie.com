@@ -1,0 +1,13 @@
+.featured-movie {
+  position: absolute;
+  top: 10px;
+  max-width: 520px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0px 10px 0 10px;
+}
+
+.featured-movie p {
+  font-size: 48px;
+  font-weight: 300;
+  color: #ffffff;
+}
