@@ -47,6 +47,7 @@ function goHome() {
     <script src="/js/jscrollpane.js"></script>
 
     <script>
+    var url = $('#trailer-iframe').attr('src');
       $(function() {
         $("#nav").load("/includes/nav.html");
         $("#footer").load("/includes/footer.html");
@@ -55,10 +56,13 @@ function goHome() {
         if ($(e.target).is('#trailer-back')) {
           $('#trailer-back').toggle();
           $('#trailer-div').toggle();
+          url = $('#trailer-iframe').attr('src');
+          $('#trailer-iframe').attr('src', '');
         } else {}
           if ($(e.target).is('#trailer-btn')) {
             $('#trailer-back').toggle();
             $('#trailer-div').toggle();
+            $('#trailer-iframe').attr('src', url);
           } else {}
       });
     </script>
@@ -154,7 +158,7 @@ function goHome() {
 
     <div class="trailer-back" id="trailer-back"></div>
     <div class="trailer" id="trailer-div" align="center">
-      <iframe src="<?php echo($trailer); ?>" scrolling="no" frameborder="0" width="800" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+      <iframe src="<?php echo($trailer); ?>" id="trailer-iframe" scrolling="no" frameborder="0" width="800" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
     </div>
 
     <script>
