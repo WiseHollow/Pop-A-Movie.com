@@ -17,6 +17,7 @@ $featured_movies = getFeaturedMovies($conn);
     <link href="/css/jscrollpane.css" rel="stylesheet">
     <link href="/css/navbar.css" rel="stylesheet">
     <link href="/css/base.css" rel="stylesheet">
+    <link href="/css/pages/home.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
 
     <script src="/js/popper.js"></script>
@@ -50,8 +51,9 @@ $featured_movies = getFeaturedMovies($conn);
         </ul>
         <div class="scroll-pane">
           <?php
-          foreach ($featured_movies as $movie) {
-            echo('<a href="/watch/' . $movie['id'] . '"><img class="video-thumbnail-large" src="data:image/jpeg;base64,' . base64_encode($movie['image']) . '"></a>');
+          for ($index = 0; $index < sizeof($featured_movies); $index++) {
+            $movie = $featured_movies[$index];
+            echo('<a href="/watch/' . $movie['id'] . '"><span class="featured-movie" style="left: ' . (25 + 625 * $index) . 'px;"><p>' . $movie['title'] . '</p></span><img class="video-thumbnail-large" src="data:image/jpeg;base64,' . base64_encode($movie['image']) . '"></a>');
           }
           ?>
         </div>

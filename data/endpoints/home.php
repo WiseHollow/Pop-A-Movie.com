@@ -38,7 +38,11 @@ function getLatestMovies($conn) {
 }
 
 function getFeaturedMovies($conn) {
-  $sql = 'SELECT * FROM movies_featured';
+  $sql = 'SELECT movies.id, title, image
+  FROM movies_featured
+  JOIN movies
+  WHERE movies.id = movies_featured.id
+  ORDER BY movies.id ASC';
   $result = $conn->query($sql);
   $movies = array();
   if ($result) {
