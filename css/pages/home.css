@@ -4,6 +4,7 @@
   max-width: 520px;
   background-color: rgba(0, 0, 0, 0.4);
   padding: 0px 10px 0 10px;
+  border-radius: 3px;
 }
 
 .featured-movie p {
