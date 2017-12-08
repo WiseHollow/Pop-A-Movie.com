@@ -85,7 +85,7 @@ function goHome() {
       <div class="tab-content card-block" align="center">
         <div class="tab-pane active" id="home" role="tabpanel">
           <!--<img class="video-thumbnail-large" src="http://via.placeholder.com/1280x720">-->
-          <iframe src="<?php echo($movie['url']); ?>" scrolling="no" frameborder="0" width="1280" height="720" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+          <iframe sandbox="allow-same-origin allow-scripts" src="<?php echo($movie['url']); ?>" scrolling="no" frameborder="0" width="1280" height="720" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
         </div>
       </div>
     </div>
