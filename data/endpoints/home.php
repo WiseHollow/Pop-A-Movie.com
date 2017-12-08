@@ -8,7 +8,7 @@ function getMostViewedMovies($conn) {
     FROM movies
     JOIN movies_thumbnails ON movies_thumbnails.id = movies.id
     ORDER BY views DESC
-    LIMIT 20';
+    LIMIT 16';
 
   $result = $conn->query($sql);
   $movies = array();
@@ -25,7 +25,7 @@ function getLatestMovies($conn) {
   FROM movies
   JOIN movies_thumbnails ON movies_thumbnails.id = movies.id
   ORDER BY added DESC
-  LIMIT 20';
+  LIMIT 16';
 
   $result = $conn->query($sql);
   $movies = array();
