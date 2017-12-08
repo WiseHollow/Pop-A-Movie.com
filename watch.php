@@ -71,7 +71,7 @@ function goHome() {
 
   </head>
 
-  <body class="text-white" style="background-color: #262626;">
+  <body class="container-fluid text-white" style="background-color: #262626;">
     <!-- Navbar -->
     <div id="nav"></div>
 

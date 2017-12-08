@@ -34,7 +34,7 @@ $featured_movies = getFeaturedMovies($conn);
 
   </head>
 
-  <body class="text-white" style="background-color: #262626;">
+  <body class="container-fluid text-white" style="background-color: #262626;">
     <!-- Navbar -->
     <div id="nav"></div>
 
@@ -54,12 +54,6 @@ $featured_movies = getFeaturedMovies($conn);
             echo('<a href="/watch/' . $movie['id'] . '"><img class="video-thumbnail-large" src="data:image/jpeg;base64,' . base64_encode($movie['image']) . '"></a>');
           }
           ?>
-          <!-- <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a>
-          <a href="#"><img class="video-thumbnail-large" src="http://via.placeholder.com/600x250"></a> -->
         </div>
       </div>
 
