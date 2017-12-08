@@ -10,7 +10,7 @@ function getMovie($conn, $id) {
   // Here is the sql for ratings when we want it. JOIN movies_ratings ON movies.id = movies_ratings.id
   $sql = $conn->prepare('SELECT * FROM movies
     JOIN movies_description ON movies.id = movies_description.id
-    JOIN movies_urls ON movies.id = movies_urls.id
+    LEFT JOIN movies_countries ON movies.id = movies_countries.movie_id
     WHERE movies.id = ? AND active = 1');
   $sql->bind_param('i', $id);
   $sql->execute();
@@ -34,6 +34,23 @@ function getMovie($conn, $id) {
 
   // Return movie.
   return $movie;
+}
+
+function getMovieUrls($conn, $id) {
+  $sql = $conn->prepare('SELECT url, language
+    FROM movies_urls
+    WHERE movies_urls.movie_id = ?');
+  $sql->bind_param('i', $id);
+  $sql->execute();
+  $result = $sql->get_result();
+
+  $urls = array();
+
+  while ($row = $result->fetch_assoc()) {
+    array_push($urls, $row);
+  }
+
+  return $urls;
 }
 
 function getGenres($conn, $id) {

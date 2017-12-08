@@ -58,3 +58,34 @@
   z-index: 100;
   display: none;
 }
+
+.table-header {
+  background-color: #5d5d5d;
+  height: 40px;
+  padding: 0px;
+  margin-bottom: 1px;
+}
+
+.table-header p {
+  margin-top: 7px;
+}
+
+.table-body {
+  background-color: #292b2c;
+  height: 35px;
+  padding: 0px;
+  margin-bottom: 5px;
+}
+
+.table-body input {
+  width: 99%;
+  border-radius: 3px;
+}
+
+.table-body p {
+  margin-top: 6px;
+}
+
+.table-cell {
+  border-right: #000000 solid 1px;
+}
