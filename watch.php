@@ -11,17 +11,17 @@ if (isset($_GET['id'])) {
     $genres_array = getGenres($conn, $id);
     $genres = implode(', ', $genres_array);
     if (!isset($movie['title'])) {
-      goHome();
+      notFound();
     }
   } else {
-    goHome();
+    notFound();
   }
 } else {
-  goHome();
+  notFound();
 }
 
-function goHome() {
-  header('Location: /');
+function notFound() {
+  header('Location: /404.php');
 }
 
 
