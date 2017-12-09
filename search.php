@@ -1,7 +1,16 @@
 <?php
 require('data/endpoints/search.php');
 $keywords = explode("?query=", $_SERVER['REQUEST_URI'])[1];
-$movies = getSearchResults($conn, $keywords);
+
+if (strlen($keywords) >= 3) {
+  $movies = getSearchResults($conn, $keywords);
+} else {
+  goHome();
+}
+
+function goHome() {
+  header('Location: /');
+}
 ?>
 
 <html lang="en">
