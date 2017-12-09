@@ -49,7 +49,7 @@ $featured_movies = getFeaturedMovies($conn);
           <?php
           for ($index = 0; $index < sizeof($featured_movies); $index++) {
             $movie = $featured_movies[$index];
-            echo('<a href="/watch/' . $movie['id'] . '"><span class="featured-movie" style="left: ' . (25 + 625 * $index) . 'px;"><p>' . $movie['title'] . '</p></span><img class="video-thumbnail-large" src="data:image/jpeg;base64,' . base64_encode($movie['image']) . '"></a>');
+            echo('<a href="/watch/' . $movie['title'] . '"><span class="featured-movie" style="left: ' . (25 + 625 * $index) . 'px;"><p>' . $movie['title'] . '</p></span><img class="video-thumbnail-large" src="data:image/jpeg;base64,' . base64_encode($movie['image']) . '"></a>');
           }
           ?>
         </div>
@@ -85,8 +85,8 @@ $featured_movies = getFeaturedMovies($conn);
             <?php
             foreach ($most_viewed as $movie) {
               echo('<figure class="figure">');
-              echo('<a href="/watch/' . $movie['id'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
-              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['id'] . '">' . $movie['title'] . '</a></figcaption>');
+              echo('<a href="/watch/' . $movie['title'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
+              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['title'] . '">' . $movie['title'] . '</a></figcaption>');
               echo('</figure>');
             }
             ?>
@@ -131,8 +131,8 @@ $featured_movies = getFeaturedMovies($conn);
             <?php
             foreach ($random_movies as $movie) {
               echo('<figure class="figure">');
-              echo('<a href="/watch/' . $movie['id'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
-              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['id'] . '">' . $movie['title'] . '</a></figcaption>');
+              echo('<a href="/watch/' . $movie['title'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
+              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['title'] . '">' . $movie['title'] . '</a></figcaption>');
               echo('</figure>');
             }
             ?>
@@ -157,8 +157,8 @@ $featured_movies = getFeaturedMovies($conn);
             <?php
             foreach ($latest_movies as $movie) {
               echo('<figure class="figure">');
-              echo('<a href="/watch/' . $movie['id'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
-              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['id'] . '">' . $movie['title'] . '</a></figcaption>');
+              echo('<a href="/watch/' . $movie['title'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
+              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['title'] . '">' . $movie['title'] . '</a></figcaption>');
               echo('</figure>');
             }
             ?>

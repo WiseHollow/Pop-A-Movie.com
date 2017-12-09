@@ -1,27 +1,22 @@
 <?php
 require('data/endpoints/watch.php');
 
-if (isset($_GET['id'])) {
-  $id = explode('.', $_GET['id'])[0];
-  if ($id != '' && is_numeric($id)) {
-    $movie = getMovie($conn, $id);
-    $urls = getMovieUrls($conn, $id);
-    $urlKey = explode('/', $urls[0]['url'])[4]; // this needs a lot of work
-    $trailer = getTrailer($conn, $id);
-    $genres_array = getGenres($conn, $id);
-    $genres = implode(', ', $genres_array);
-    if (!isset($movie['title'])) {
-      notFound();
-    }
-  } else {
-    notFound();
-  }
-} else {
-  notFound();
-}
-
 function notFound() {
   header('Location: /404.php');
+}
+$title = str_replace("%20", " ", explode("watch/", $_SERVER['REQUEST_URI'])[1]);
+$movie = getMovie($conn, $title);
+// echo(json_encode($movie));
+if (isset($movie['title'])) {
+  $id = $movie['id'];
+  $urls = getMovieUrls($conn, $id);
+  $countriesArray = getCountries($conn, $id);
+  $countries = implode(', ', $countriesArray);
+  $trailer = getTrailer($conn, $id);
+  $genres_array = getGenres($conn, $id);
+  $genres = implode(', ', $genres_array);
+} else {
+  notFound();
 }
 
 
@@ -127,6 +122,9 @@ function notFound() {
           </div>
           <div class="row video-description">
             <p class="card-text">Genres: <?php echo($genres); ?></p>
+          </div>
+          <div class="row video-description">
+            <p class="card-text">Country: <?php echo($countries); ?></p>
           </div>
         </div>
       </div>

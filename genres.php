@@ -71,7 +71,7 @@ if (isset($_GET["genre"])) {
               // echo($movies[$x]['title'] . '<br>');
               echo('<figure class="figure">');
               echo('<a href="/watch/' . $movies[$x]['id'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movies[$x]['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
-              echo('<figcaption class="figure-caption"><a href="/watch/' . $movies[$x]['id'] . '">' . $movies[$x]['title'] . '</a></figcaption>');
+              echo('<figcaption class="figure-caption"><a href="/watch/' . $movies[$x]['title'] . '">' . $movies[$x]['title'] . '</a></figcaption>');
               echo('</figure>');
             }
           }

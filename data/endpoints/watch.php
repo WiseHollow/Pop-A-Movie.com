@@ -5,14 +5,13 @@ require('data/connection.php');
 // Establish connection to database.
 $conn = getConnection();
 
-function getMovie($conn, $id) {
+function getMovie($conn, $title) {
   // Prepare statement to get all data related to movie of id.
   // Here is the sql for ratings when we want it. JOIN movies_ratings ON movies.id = movies_ratings.id
-  $sql = $conn->prepare('SELECT * FROM movies
+  $sql = $conn->prepare('SELECT movies.id, title, views, description FROM movies
     JOIN movies_description ON movies.id = movies_description.id
-    LEFT JOIN movies_countries ON movies.id = movies_countries.movie_id
-    WHERE movies.id = ? AND active = 1');
-  $sql->bind_param('i', $id);
+    WHERE movies.title = ? AND active = 1');
+  $sql->bind_param('s', $title);
   $sql->execute();
   $result = $sql->get_result();
 
@@ -28,12 +27,18 @@ function getMovie($conn, $id) {
   // We must increment our movie views on the server, plus what is being sent to the client.
   // First we have to check if the movie data was populated.
   if (isset($movie['views'])) {
-    incrementViews($conn, $id);
+    incrementViews($conn, $title);
     $movie['views'] = $movie['views'] + 1;
   }
 
   // Return movie.
   return $movie;
+}
+
+function incrementViews($conn, $title) {
+  $sql = $conn->prepare('UPDATE movies SET views = views + 1 WHERE movies.title = ?');
+  $sql->bind_param('s', $title);
+  $sql->execute();
 }
 
 function getMovieUrls($conn, $id) {
@@ -103,12 +108,6 @@ function getTags($conn, $id) {
 
 }
 
-function incrementViews($conn, $id) {
-  $sql = $conn->prepare('UPDATE movies SET views = views + 1 WHERE movies.id = ?');
-  $sql->bind_param('i', $id);
-  $sql->execute();
-}
-
 function getTrailer($conn, $id) {
   $sql = $conn->prepare('SELECT url FROM movies_trailers WHERE id = ?');
   $sql->bind_param('i', $id);
@@ -120,6 +119,20 @@ function getTrailer($conn, $id) {
     break;
   }
   return $trailer;
+}
+
+function getCountries($conn, $id) {
+  $sql = $conn->prepare('SELECT country FROM countries
+    JOIN movies_countries ON movies_countries.movie_id = ?
+    WHERE countries.id = movies_countries.country_id');
+  $sql->bind_param('i', $id);
+  $sql->execute();
+  $result = $sql->get_result();
+  $countries = array();
+  while ($row = $result->fetch_assoc()) {
+    array_push($countries, $row['country']);
+  }
+  return $countries;
 }
 
 function thumbsUp($conn, $id) {

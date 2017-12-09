@@ -65,8 +65,8 @@ function goHome() {
             <?php
             foreach ($movies as $movie) {
               echo('<figure class="figure">');
-              echo('<a href="/watch/' . $movie['id'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
-              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['id'] . '">' . $movie['title'] . '</a></figcaption>');
+              echo('<a href="/watch/' . $movie['title'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
+              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['title'] . '">' . $movie['title'] . '</a></figcaption>');
               echo('</figure>');
             }
             ?>
