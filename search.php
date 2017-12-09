@@ -1,3 +1,10 @@
+<?php
+require('data/endpoints/search.php');
+echo("<br><br><br><br>");
+$keywords = explode("?query=", $_SERVER['REQUEST_URI'])[1];
+$movies = getSearchResults($conn, $keywords);
+?>
+
 <html lang="en">
 
   <head>
@@ -45,48 +52,16 @@
       <div class="tab-content card-block" align="center">
         <div class="tab-pane active">
 
-          <h3>Results for: QUERY HERE</h3>
+          <h3>Results for: <?php echo((isset($keywords) ? $keywords : 'none')); ?></h3>
           <figure class="figure">
-            <a href="#"><img src="https://via.placeholder.com/150x150" class="figure-img img-fluid rounded" alt="Movie Title 1"></a>
-            <figcaption class="figure-caption title"><a href="#">Movie Title 1</a></figcaption>
-            <figcaption class="figure-caption">
-              <a href="#">Drama</a>,
-              <a href="#">Romance</a>,
-              <a href="#">Asian</a>
-            </figcaption>
-            <figcaption class="figure-caption">
-              <a href="#">korean drama</a>,
-              <a href="#">k-drama</a>
-            </figcaption>
-          </figure>
-
-          <figure class="figure">
-            <a href="#"><img src="https://via.placeholder.com/150x150" class="figure-img img-fluid rounded" alt="Movie Title 2"></a>
-            <figcaption class="figure-caption title"><a href="#">Movie Title 2</a></figcaption>
-            <figcaption class="figure-caption">
-              <a href="#">Drama</a>,
-              <a href="#">Romance</a>,
-              <a href="#">Asian</a>
-            </figcaption>
-            <figcaption class="figure-caption">
-              <a href="#">korean drama</a>,
-              <a href="#">k-drama</a>
-            </figcaption>
-          </figure>
-
-          <figure class="figure">
-            <a href="#"><img src="https://via.placeholder.com/150x150" class="figure-img img-fluid rounded" alt="Movie Title 3"></a>
-            <figcaption class="figure-caption title"><a href="#">Movie Title 3</a></figcaption>
-            <figcaption class="figure-caption">
-              <a href="#">Drama</a>,
-              <a href="#">Romance</a>,
-              <a href="#">Asian</a>
-            </figcaption>
-            <figcaption class="figure-caption">
-              <a href="#">korean drama</a>,
-              <a href="#">k-drama</a>
-            </figcaption>
-          </figure>
+            <?php
+            foreach ($movies as $movie) {
+              echo('<figure class="figure">');
+              echo('<a href="/watch/' . $movie['id'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
+              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['id'] . '">' . $movie['title'] . '</a></figcaption>');
+              echo('</figure>');
+            }
+            ?>
 
         </div>
       </div>
