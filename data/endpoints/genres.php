@@ -59,7 +59,8 @@ function getMovies($conn, $genre) {
     JOIN movies_genres ON movies_genres.genre_id = ?
     JOIN movies_thumbnails ON movies_thumbnails.id = movies_genres.movie_id
     WHERE movies.id = movies_genres.movie_id
-    AND movies.active = 1');
+    AND movies.active = 1
+    ORDER BY movies.added DESC');
   $sql->bind_param('i', $genre_id);
   $sql->execute();
   $result = $sql->get_result();
