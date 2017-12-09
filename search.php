@@ -1,6 +1,5 @@
 <?php
 require('data/endpoints/search.php');
-echo("<br><br><br><br>");
 $keywords = explode("?query=", $_SERVER['REQUEST_URI'])[1];
 $movies = getSearchResults($conn, $keywords);
 ?>
