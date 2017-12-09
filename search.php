@@ -51,7 +51,7 @@ $movies = getSearchResults($conn, $keywords);
       <div class="tab-content card-block" align="center">
         <div class="tab-pane active">
 
-          <h3>Results for: <?php echo((isset($keywords) ? $keywords : 'none')); ?></h3>
+          <h3>Results for: <?php echo($keywords); ?></h3>
           <figure class="figure">
             <?php
             foreach ($movies as $movie) {
