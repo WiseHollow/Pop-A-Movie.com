@@ -48,7 +48,7 @@ if (isset($_GET["genre"])) {
     <div class="card bg-inverse text-white">
       <ul class="nav nav-tabs" role="tablist">
         <span class="card-title align-middle">
-          <?php echo($genre); ?> Movies &nbsp;
+          <?php echo($genre . ($genre == 'Genres' ? '' : ' Movies')); ?> &nbsp;
           <i class="fa fa-angle-right" aria-hidden="true"></i>
         </span>
       </ul>
