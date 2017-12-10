@@ -53,6 +53,7 @@ if (isset($movie['title'])) {
         if ($(e.target).is('#black-background')) {
           $('#black-background').hide();
           $('#trailer-div').hide();
+          $('#report-video-div').hide();
           // url = $('#trailer-iframe').attr('src');
           $('#trailer-iframe').attr('src', '');
         } else if ($(e.target).is('#trailer-btn')) {
@@ -63,6 +64,7 @@ if (isset($movie['title'])) {
           }
         } else if ($(e.target).is('#report-video-btn')) {
           $('#black-background').toggle();
+          $('#report-video-div').toggle();
         }
       });
     </script>
@@ -204,11 +206,11 @@ if (isset($movie['title'])) {
     <div id="footer"></div>
 
     <div class="black-background" id="black-background"></div>
-    <div class="trailer" id="trailer-div" align="center">
+    <div class="floatingDialog trailer" id="trailer-div" align="center">
       <iframe src="<?php echo($trailer); ?>" id="trailer-iframe" scrolling="no" frameborder="0" width="800" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
     </div>
 
-    <div class="report-video-div" id="report-video-div">
+    <div class="floatingDialog report-video-div" id="report-video-div">
       <p>Test</p>
     </div>
 
