@@ -60,15 +60,21 @@ function goHome() {
       <div class="tab-content card-block" align="center">
         <div class="tab-pane active">
 
-          <h3>Results for: <?php echo($keywords); ?></h3>
+          <h3>Search results for: <?php echo($keywords); ?></h3>
           <figure class="figure">
             <?php
-            foreach ($movies as $movie) {
-              echo('<figure class="figure">');
-              echo('<a href="/watch/' . $movie['title'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
-              echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['title'] . '">' . $movie['title'] . '</a></figcaption>');
-              echo('</figure>');
+            $length = sizeof($movies);
+            if ($length > 0) {
+              foreach ($movies as $movie) {
+                echo('<figure class="figure">');
+                echo('<a href="/watch/' . $movie['title'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
+                echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['title'] . '">' . $movie['title'] . '</a></figcaption>');
+                echo('</figure>');
+              }
+            } else {
+              echo("<p>No results found.</p>");
             }
+
             ?>
 
         </div>
