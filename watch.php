@@ -44,23 +44,26 @@ if (isset($movie['title'])) {
     <script src="/js/jscrollpane.js"></script>
 
     <script>
-    var url = $('#trailer-iframe').attr('src');
+    var url = "<?php echo($trailer); ?>";
       $(function() {
         $("#nav").load("/includes/nav.html");
         $("#footer").load("/includes/footer.html");
       });
       $(document).on("click", function(e) {
-        if ($(e.target).is('#trailer-back')) {
-          $('#trailer-back').toggle();
-          $('#trailer-div').toggle();
-          url = $('#trailer-iframe').attr('src');
+        if ($(e.target).is('#black-background')) {
+          $('#black-background').hide();
+          $('#trailer-div').hide();
+          // url = $('#trailer-iframe').attr('src');
           $('#trailer-iframe').attr('src', '');
-        } else {}
-          if ($(e.target).is('#trailer-btn')) {
-            $('#trailer-back').toggle();
-            $('#trailer-div').toggle();
+        } else if ($(e.target).is('#trailer-btn')) {
+          $('#black-background').toggle();
+          $('#trailer-div').toggle();
+          if (  $('#trailer-iframe').attr('src') != url) {
             $('#trailer-iframe').attr('src', url);
-          } else {}
+          }
+        } else if ($(e.target).is('#report-video-btn')) {
+          $('#black-background').toggle();
+        }
       });
     </script>
 
@@ -115,6 +118,7 @@ if (isset($movie['title'])) {
             </div>
             <div class="col-2">
               <?php echo($trailer != '' ? '<input class="btn btn-primary btn-block" type="button" value="Watch Trailer" id="trailer-btn">' : ''); ?>
+                <?php echo($trailer != '' ? '<input class="btn btn-primary btn-block" type="button" value="Report" id="report-video-btn">' : ''); ?>
             </div>
           </div>
           <div class="row video-description">
@@ -199,9 +203,13 @@ if (isset($movie['title'])) {
     <!-- Footer -->
     <div id="footer"></div>
 
-    <div class="trailer-back" id="trailer-back"></div>
+    <div class="black-background" id="black-background"></div>
     <div class="trailer" id="trailer-div" align="center">
       <iframe src="<?php echo($trailer); ?>" id="trailer-iframe" scrolling="no" frameborder="0" width="800" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+    </div>
+
+    <div class="report-video-div" id="report-video-div">
+      <p>Test</p>
     </div>
 
     <script lang="jquery">
