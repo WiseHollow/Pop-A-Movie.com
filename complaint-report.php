@@ -1,5 +1,29 @@
 <?php
 
+require('data/keys.php');
+
+function post_captcha($user_response) {
+    $fields_string = '';
+    $fields = array(
+        'secret' => $re_secret_key,
+        'response' => $user_response
+    );
+    foreach($fields as $key=>$value)
+    $fields_string .= $key . '=' . $value . '&';
+    $fields_string = rtrim($fields_string, '&');
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
+    curl_setopt($ch, CURLOPT_POST, count($fields));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, True);
+
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return json_decode($result, true);
+}
+
 if (!isset($_GET['movie-title']) || !isset($_GET['affected']) || !isset($_GET['copyright-owner-name']) || !isset($_GET['full-legal-name']) || !isset($_GET['title']) || !isset($_GET['phone-number']) || !isset($_GET['email-address'])) {
   $verified = false;
 } else {
@@ -48,29 +72,35 @@ if (!isset($_GET['movie-title']) || !isset($_GET['affected']) || !isset($_GET['c
         <div class="tab-pane active" id="home" role="tabpanel">
           <div>
             <h2>Pop A Movie - Complaint Verification</h2>
-            <p>Thanks! We've received your legal request.</p>
-            <p>We've sent you a verification email about this case. If we comply with your notice in full, you will not receive any further emails about it. </p>
 
             <?php
             if ($verified) {
 
-              include('data/endpoints/complaint-report.php');
-              $conn = getConnection();
+              // Call the function post_captcha
+              $res = post_captcha($_GET['g-recaptcha-response']);
 
-              $movie_title = $conn->real_escape_string($_GET['movie-title']);
-              $affected = (int) $conn->real_escape_string($_GET['affected']);
-              $company = $conn->real_escape_string($_GET['copyright-owner-name']);
-              $legal_name = $conn->real_escape_string($_GET['full-legal-name']);
-              $title = $conn->real_escape_string($_GET['title']);
-              $phone_number = $conn->real_escape_string($_GET['phone-number']);
-              $email = $conn->real_escape_string($_GET['email-address']);
-
-              $response = recordComplaint($conn, $movie_title, $affected, $company, $title, $legal_name, $phone_number, $email);
-
-              if ($response == 0) {
-                echo('<br>Error when submitting complaint report. Please contact support about this problem.');
+              if (!$res['success']) {
+                  echo '<p>Please go back and make sure you check the security CAPTCHA box.</p><br>';
               } else {
-                sendEmail($email, $legal_name, $movie_title);
+                include('data/endpoints/complaint-report.php');
+                $conn = getConnection();
+
+                $movie_title = $conn->real_escape_string($_GET['movie-title']);
+                $affected = (int) $conn->real_escape_string($_GET['affected']);
+                $company = $conn->real_escape_string($_GET['copyright-owner-name']);
+                $legal_name = $conn->real_escape_string($_GET['full-legal-name']);
+                $title = $conn->real_escape_string($_GET['title']);
+                $phone_number = $conn->real_escape_string($_GET['phone-number']);
+                $email = $conn->real_escape_string($_GET['email-address']);
+
+                $response = recordComplaint($conn, $movie_title, $affected, $company, $title, $legal_name, $phone_number, $email);
+
+                if ($response == 0) {
+                  echo('<br>Error when submitting complaint report. Please contact support about this problem.');
+                } else {
+                  echo("<p>Thanks! We've received your legal request.</p> <p>We've sent you a verification email about this case. If we comply with your notice in full, you will not receive any further emails about it. </p>");
+                  sendEmail($email, $legal_name, $movie_title);
+                }
               }
             } else {
               echo ('An issue was detected with your report. Please make sure you completed the form in the page prior to coming here.');

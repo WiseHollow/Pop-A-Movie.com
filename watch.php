@@ -42,6 +42,7 @@ if (isset($movie['title'])) {
     <script src="/js/pages/video.js"></script>
     <script src="/js/mousewheel.js"></script>
     <script src="/js/jscrollpane.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
     <script>
     var url = "<?php echo($trailer); ?>";
@@ -286,6 +287,8 @@ if (isset($movie['title'])) {
           <label for="movie-title">Movie Title </label>
           <input id="movie-title" type="text" name="movie-title" value="<?php echo($title); ?>" class="form-control form-control-sm" readonly>
         </div>
+
+        <div class="g-recaptcha" data-sitekey="6LdkZzwUAAAAAI33I6DeaDT_Ln8Q5LqyQUrK0-0n"></div>
 
         <input class="btn btn-primary btn-block" type="submit" value="Submit Report">
       </form>
