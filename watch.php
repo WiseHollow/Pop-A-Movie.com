@@ -288,7 +288,7 @@ if (isset($movie['title'])) {
           <input id="movie-title" type="text" name="movie-title" value="<?php echo($title); ?>" class="form-control form-control-sm" readonly>
         </div>
 
-        <div class="g-recaptcha" data-sitekey="6LdkZzwUAAAAAI33I6DeaDT_Ln8Q5LqyQUrK0-0n"></div>
+        <div class="g-recaptcha" data-sitekey="6LeAoTwUAAAAAJJxvbb1K0cezLGZvbTZwX_41jXt"></div>
 
         <input class="btn btn-primary btn-block" type="submit" value="Submit Report">
       </form>
