@@ -46,6 +46,7 @@ if (isset($movie['title'])) {
 
     <script>
     var url = "<?php echo($trailer); ?>";
+    var title = "<?php echo($movie['title']); ?>";
       $(function() {
         $("#nav").load("/includes/nav.html");
         $("#footer").load("/includes/footer.html");
@@ -66,6 +67,8 @@ if (isset($movie['title'])) {
         } else if ($(e.target).is('#report-video-btn')) {
           $('#black-background').toggle();
           $('#report-video-div').toggle();
+        } else if ($(e.target).is('#search-subtitles-btn')) {
+          subtitles(title);
         }
       });
     </script>
@@ -121,7 +124,8 @@ if (isset($movie['title'])) {
             </div>
             <div class="col-2">
               <?php echo($trailer != '' ? '<input class="btn btn-primary btn-block" type="button" value="Watch Trailer" id="trailer-btn">' : ''); ?>
-                <?php echo($trailer != '' ? '<input class="btn btn-primary btn-block" type="button" value="Report" id="report-video-btn">' : ''); ?>
+              <input class="btn btn-primary btn-block" type="button" value="Search for Subtitles" id="search-subtitles-btn">
+              <input class="btn btn-primary btn-block" type="button" value="Report" id="report-video-btn">
             </div>
           </div>
           <div class="row video-description">

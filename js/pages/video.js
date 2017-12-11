@@ -4,6 +4,8 @@ function download(url) {
   window.open(downloadUrl);
 }
 
-function subtitles(url) {
-  window.open(url);
+function subtitles(movie_title) {
+  var url = "https://subscene.com/subtitles/title?q=";
+  movie_title = movie_title.replace(" ", "+");
+  window.open(url + movie_title);
 }
