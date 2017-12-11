@@ -112,15 +112,17 @@ if (isset($movie['title'])) {
         <!-- style="padding-top: 10px;" -->
         <div class="tab-pane active text-muted">
           <div class="row">
-            <div class="col-2">
-              <h3><?php echo($movie['views']); ?> Views</h3>
-            </div>
-            <div class="col-2">
-              <i class="fa fa-thumbs-up fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> <?php echo(isset($movie['thumbs_up']) ? $movie['thumbs_up'] : '0'); ?> </span></i> &nbsp;
-              <i class="fa fa-thumbs-down fa-2x align-top" aria-hidden="true"><span style="font-size: 32px;"> <?php echo(isset($movie['thumbs_down']) ? $movie['thumbs_down'] : '0'); ?> </span></i>
-            </div>
-            <div class="col-6">
-              <i class="fa fa-share-square-o fa-2x" aria-hidden="true">Share</i>
+            <div class="col-10">
+            <h3><?php echo($movie['views']); ?> Views</h3>
+              <div class="video-description">
+                <p class="card-text"><b>Description: </b><?php echo($movie['description']); ?></p>
+              </div>
+              <div class="video-description">
+                <p class="card-text"><b>Genres: </b><?php echo($genres); ?></p>
+              </div>
+              <div class="video-description">
+                <p class="card-text"><?php echo($countries != "" ? '<b>Country: </b>' . $countries : ''); ?></p>
+              </div>
             </div>
             <div class="col-2">
               <?php echo($trailer != '' ? '<input class="btn btn-primary btn-block" type="button" value="Watch Trailer" id="trailer-btn">' : ''); ?>
@@ -128,15 +130,7 @@ if (isset($movie['title'])) {
               <input class="btn btn-primary btn-block" type="button" value="Report" id="report-video-btn">
             </div>
           </div>
-          <div class="row video-description">
-            <p class="card-text">Description: <?php echo($movie['description']); ?></p>
-          </div>
-          <div class="row video-description">
-            <p class="card-text">Genres: <?php echo($genres); ?></p>
-          </div>
-          <div class="row video-description">
-            <p class="card-text">Country: <?php echo($countries); ?></p>
-          </div>
+
         </div>
       </div>
     </div>
@@ -164,7 +158,7 @@ if (isset($movie['title'])) {
               <p>Download Link</p>
             </div>
             <div class="col-2 table-header table-cell" style="border-right: 0px;">
-              <p>Subtitles Link</p>
+              <p>Report Link</p>
             </div>
             <div class="col-2"></div>
           </div>
@@ -176,7 +170,8 @@ if (isset($movie['title'])) {
               echo('<div class="col-2 table-body"><p>' . $server . '</p></div>');
               echo('<div class="col-2 table-body"><p>' . $url['language'] . '</p></div>');
               echo('<div class="col-2 table-body"><input type="button" class="btn btn-success" value="Download" onClick="download(\'' . $url['url'] . '\')"></div>');
-              echo('<div class="col-2 table-body"><input type="button" class="btn btn-success" value="View"></div>');
+              echo('<div class="col-2 table-body"></div>');
+              // <input type="button" class="btn btn-success" value="View">
             }
             ?>
             <div class="col-2"></div>
