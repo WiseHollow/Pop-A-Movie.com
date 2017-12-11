@@ -67,14 +67,11 @@ if (!isset($_GET['movie-title']) || !isset($_GET['affected']) || !isset($_GET['c
 
               $response = recordComplaint($conn, $movie_title, $affected, $company, $title, $legal_name, $phone_number, $email);
 
-              echo('<br><br>' . $response . '<br>');
               if ($response == 0) {
-                echo('Error when submitting complaint report. Please contact support about this problem.');
+                echo('<br>Error when submitting complaint report. Please contact support about this problem.');
               } else {
-                // Send email
+                sendEmail($email, $legal_name, $movie_title);
               }
-
-
             } else {
               echo ('An issue was detected with your report. Please make sure you completed the form in the page prior to coming here.');
             }
