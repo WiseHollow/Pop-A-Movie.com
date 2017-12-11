@@ -210,8 +210,80 @@ if (isset($movie['title'])) {
       <iframe src="<?php echo($trailer); ?>" id="trailer-iframe" scrolling="no" frameborder="0" width="800" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
     </div>
 
-    <div class="floatingDialog report-video-div" id="report-video-div">
-      <p>Test</p>
+    <div class="floatingDialog report-video-div text-white" id="report-video-div">
+      <form>
+        <h2>Copyright infringement - Complaint</h2>
+        <hr>
+        <h3>Who is being affected?</h3>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            I am.
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            My company, organization, or client
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" disabled>
+            Another copyright owner
+          </label>
+        </div>
+
+        <h3>Give us some additional details.</h3>
+
+        <div class="form-group">
+          <label for="company-name">Copyright Owner Name (Company Name if applicable): </label>
+          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Copyright Owner Name">
+        </div>
+
+        <div class="form-group">
+          <label for="company-name">Your Full Legal Name (Aliases, usernames or initials not accepted): </label>
+          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Full Legal Name">
+        </div>
+
+        <div class="form-group">
+          <label for="company-name">Your Title or Job Position (What is your authority to make this complaint?): </label>
+          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Title/Position">
+        </div>
+
+        <div class="form-group">
+          <label for="company-name">Phone Number: </label>
+          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Phone">
+        </div>
+
+        <div class="form-group">
+          <label for="company-name">Email Address: </label>
+          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Email">
+        </div>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" required>
+            I am the owner, or an agent authoized to act on behalf of the owner.
+          </label>
+        </div>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" required>
+            This notification is accurate.
+          </label>
+        </div>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" required>
+            Any person who knowingly materially misrepresents under this section (<a href="https://www.law.cornell.edu/uscode/text/17/512" target="_blank">details</a>), shall be liable for any damages.
+          </label>
+        </div>
+
+        <input class="btn btn-primary btn-block" type="submit" value="Submit Report" method="POST" action="/complaint-report.php">
+      </form>
     </div>
 
     <script lang="jquery">
