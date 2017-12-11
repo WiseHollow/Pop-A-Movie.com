@@ -211,25 +211,25 @@ if (isset($movie['title'])) {
     </div>
 
     <div class="floatingDialog report-video-div text-white" id="report-video-div">
-      <form>
+      <form action="/complaint-report.php">
         <h2>Copyright infringement - Complaint</h2>
         <hr>
         <h3>Who is being affected?</h3>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <input class="form-check-input" type="radio" name="affected" id="exampleRadios1" value="0" checked>
             I am.
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <input class="form-check-input" type="radio" name="affected" id="exampleRadios2" value="1">
             My company, organization, or client
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" disabled>
+            <input class="form-check-input" type="radio" name="affected" id="exampleRadios3" value="2">
             Another copyright owner
           </label>
         </div>
@@ -238,27 +238,27 @@ if (isset($movie['title'])) {
 
         <div class="form-group">
           <label for="company-name">Copyright Owner Name (Company Name if applicable): </label>
-          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Copyright Owner Name">
+          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Copyright Owner Name" name="copyright-owner-name">
         </div>
 
         <div class="form-group">
           <label for="company-name">Your Full Legal Name (Aliases, usernames or initials not accepted): </label>
-          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Full Legal Name">
+          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Full Legal Name" name="full-legal-name">
         </div>
 
         <div class="form-group">
-          <label for="company-name">Your Title or Job Position (What is your authority to make this complaint?): </label>
-          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Title/Position">
+          <label for="title">Your Title or Job Position (What is your authority to make this complaint?): </label>
+          <input class="form-control form-control-sm" id="title" type="text" placeholder="Title/Position" name="title">
         </div>
 
         <div class="form-group">
-          <label for="company-name">Phone Number: </label>
-          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Phone">
+          <label for="phone-number">Phone Number: </label>
+          <input class="form-control form-control-sm" id="phone-number" type="text" placeholder="Phone" name="phone-number">
         </div>
 
         <div class="form-group">
-          <label for="company-name">Email Address: </label>
-          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Email">
+          <label for="email">Email Address: </label>
+          <input class="form-control form-control-sm" id="email" type="text" placeholder="Email" name="email-address">
         </div>
 
         <div class="form-check">
@@ -282,7 +282,12 @@ if (isset($movie['title'])) {
           </label>
         </div>
 
-        <input class="btn btn-primary btn-block" type="submit" value="Submit Report" method="POST" action="/complaint-report.php">
+        <div class="form-group">
+          <label for="movie-title">Movie Title </label>
+          <input id="movie-title" type="text" name="movie-title" value="<?php echo($title); ?>" class="form-control form-control-sm" readonly>
+        </div>
+
+        <input class="btn btn-primary btn-block" type="submit" value="Submit Report">
       </form>
     </div>
 
