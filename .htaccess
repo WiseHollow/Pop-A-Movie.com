@@ -1,6 +1,9 @@
 Options +FollowSymLinks
 RewriteEngine On
 
+RewriteCond %{SERVER_PORT} 80
+RewriteCond %{REQUEST_METHOD} !POST [NC]
+
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 

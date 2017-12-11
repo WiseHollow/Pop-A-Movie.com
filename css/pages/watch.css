@@ -34,7 +34,7 @@
   color: #d25555;
 }
 
-.trailer-back {
+.black-background {
   position: fixed;
   padding: 0px;
   margin: 0px;
@@ -48,15 +48,33 @@
 }
 
 .trailer {
-  position: fixed;
   width: 800px;
   height: 480px;
   left: 50%;
   top: 50%;
   margin-left: -400px;
   margin-top: -240px;
-  z-index: 100;
   display: none;
+}
+
+.floatingDialog {
+  z-index: 100;
+  position: fixed;
+}
+
+.report-video-div {
+  border-radius: 15px;
+  background-color: #ffffff;
+  width: 600px;
+  height: 700px;
+  left: 50%;
+  top: 50%;
+  margin-left: -300px;
+  margin-top: -350px;
+  display: none;
+  background-color: #262626;
+  padding: 35px;
+  overflow-y: auto;
 }
 
 .table-header {

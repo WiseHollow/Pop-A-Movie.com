@@ -42,25 +42,31 @@ if (isset($movie['title'])) {
     <script src="/js/pages/video.js"></script>
     <script src="/js/mousewheel.js"></script>
     <script src="/js/jscrollpane.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
     <script>
-    var url = $('#trailer-iframe').attr('src');
+    var url = "<?php echo($trailer); ?>";
       $(function() {
         $("#nav").load("/includes/nav.html");
         $("#footer").load("/includes/footer.html");
       });
       $(document).on("click", function(e) {
-        if ($(e.target).is('#trailer-back')) {
-          $('#trailer-back').toggle();
-          $('#trailer-div').toggle();
-          url = $('#trailer-iframe').attr('src');
+        if ($(e.target).is('#black-background')) {
+          $('#black-background').hide();
+          $('#trailer-div').hide();
+          $('#report-video-div').hide();
+          // url = $('#trailer-iframe').attr('src');
           $('#trailer-iframe').attr('src', '');
-        } else {}
-          if ($(e.target).is('#trailer-btn')) {
-            $('#trailer-back').toggle();
-            $('#trailer-div').toggle();
+        } else if ($(e.target).is('#trailer-btn')) {
+          $('#black-background').toggle();
+          $('#trailer-div').toggle();
+          if (  $('#trailer-iframe').attr('src') != url) {
             $('#trailer-iframe').attr('src', url);
-          } else {}
+          }
+        } else if ($(e.target).is('#report-video-btn')) {
+          $('#black-background').toggle();
+          $('#report-video-div').toggle();
+        }
       });
     </script>
 
@@ -115,6 +121,7 @@ if (isset($movie['title'])) {
             </div>
             <div class="col-2">
               <?php echo($trailer != '' ? '<input class="btn btn-primary btn-block" type="button" value="Watch Trailer" id="trailer-btn">' : ''); ?>
+                <?php echo($trailer != '' ? '<input class="btn btn-primary btn-block" type="button" value="Report" id="report-video-btn">' : ''); ?>
             </div>
           </div>
           <div class="row video-description">
@@ -199,9 +206,92 @@ if (isset($movie['title'])) {
     <!-- Footer -->
     <div id="footer"></div>
 
-    <div class="trailer-back" id="trailer-back"></div>
-    <div class="trailer" id="trailer-div" align="center">
+    <div class="black-background" id="black-background"></div>
+    <div class="floatingDialog trailer" id="trailer-div" align="center">
       <iframe src="<?php echo($trailer); ?>" id="trailer-iframe" scrolling="no" frameborder="0" width="800" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+    </div>
+
+    <div class="floatingDialog report-video-div text-white" id="report-video-div">
+      <form action="/complaint-report.php">
+        <h2>Copyright infringement - Complaint</h2>
+        <hr>
+        <h3>Who is being affected?</h3>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="affected" id="exampleRadios1" value="0" checked>
+            I am.
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="affected" id="exampleRadios2" value="1">
+            My company, organization, or client
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="affected" id="exampleRadios3" value="2">
+            Another copyright owner
+          </label>
+        </div>
+
+        <h3>Give us some additional details.</h3>
+
+        <div class="form-group">
+          <label for="company-name">Copyright Owner Name (Company Name if applicable): </label>
+          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Copyright Owner Name" name="copyright-owner-name">
+        </div>
+
+        <div class="form-group">
+          <label for="company-name">Your Full Legal Name (Aliases, usernames or initials not accepted): </label>
+          <input class="form-control form-control-sm" id="company-name" type="text" placeholder="Full Legal Name" name="full-legal-name">
+        </div>
+
+        <div class="form-group">
+          <label for="title">Your Title or Job Position (What is your authority to make this complaint?): </label>
+          <input class="form-control form-control-sm" id="title" type="text" placeholder="Title/Position" name="title">
+        </div>
+
+        <div class="form-group">
+          <label for="phone-number">Phone Number: </label>
+          <input class="form-control form-control-sm" id="phone-number" type="text" placeholder="Phone" name="phone-number">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address: </label>
+          <input class="form-control form-control-sm" id="email" type="text" placeholder="Email" name="email-address">
+        </div>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" required>
+            I am the owner, or an agent authoized to act on behalf of the owner.
+          </label>
+        </div>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" required>
+            This notification is accurate.
+          </label>
+        </div>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" required>
+            Any person who knowingly materially misrepresents under this section (<a href="https://www.law.cornell.edu/uscode/text/17/512" target="_blank">details</a>), shall be liable for any damages.
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="movie-title">Movie Title </label>
+          <input id="movie-title" type="text" name="movie-title" value="<?php echo($title); ?>" class="form-control form-control-sm" readonly>
+        </div>
+
+        <div class="g-recaptcha" data-sitekey="6LdkZzwUAAAAAI33I6DeaDT_Ln8Q5LqyQUrK0-0n"></div>
+
+        <input class="btn btn-primary btn-block" type="submit" value="Submit Report">
+      </form>
     </div>
 
     <script lang="jquery">
