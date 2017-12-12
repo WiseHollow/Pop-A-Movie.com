@@ -8,10 +8,21 @@ $conn = getConnection();
 function getMovie($conn, $title) {
   // Prepare statement to get all data related to movie of id.
   // Here is the sql for ratings when we want it. JOIN movies_ratings ON movies.id = movies_ratings.id
+  $title = str_replace("%20", " ", $title);
+  $title = str_replace("%E2%80%99", "\'", $title);
+  // $title = $conn->real_escape_string($title);
+  // $title = filter_var($title, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH); // FILTER_FLAG_STRIP_HIGH
+  echo($title);
+
+  // $sql = "SELECT movies.id, title, views, description FROM movies
+  //   JOIN movies_description ON movies.id = movies_description.id
+  //   WHERE movies.title = '" . $title . "' AND active = 1";
+  // $result = $conn->query($sql);
+
   $sql = $conn->prepare('SELECT movies.id, title, views, description FROM movies
     JOIN movies_description ON movies.id = movies_description.id
     WHERE movies.title = ? AND active = 1');
-  $sql->bind_param('s', $title);
+  $success = $sql->bind_param('s', $title);
   $sql->execute();
   $result = $sql->get_result();
 

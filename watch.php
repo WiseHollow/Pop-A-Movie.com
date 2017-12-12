@@ -4,7 +4,8 @@ require('data/endpoints/watch.php');
 function notFound() {
   header('Location: /404.php');
 }
-$title = str_replace("%20", " ", explode("watch/", $_SERVER['REQUEST_URI'])[1]);
+// $title = str_replace(" ", " ", explode("watch/", $_SERVER['REQUEST_URI'])[1]);
+$title = explode("watch/", $_SERVER['REQUEST_URI'])[1];
 $movie = getMovie($conn, $title);
 // echo(json_encode($movie));
 if (isset($movie['title'])) {
@@ -16,9 +17,9 @@ if (isset($movie['title'])) {
   $genres_array = getGenres($conn, $id);
   $genres = implode(', ', $genres_array);
 } else {
-  notFound();
+  echo("<br><br><br><br><br>");
+  // notFound();
 }
-
 
 ?>
 
