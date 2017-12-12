@@ -1,6 +1,6 @@
 RewriteEngine On
 
-RewriteRule ^watch/([0-9a-zA-Z]+) watch.php?title=$1 [NC,L]
+RewriteRule ^watch/([0-9a-zA-Z]+) watch.php?id=$1 [NC,L]
 
 RewriteRule ^search/([0-9a-zA-Z]+) search.php?query=$1 [NC,L]
 RewriteRule ^search search.php [NC]

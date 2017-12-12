@@ -5,25 +5,13 @@ require('data/connection.php');
 // Establish connection to database.
 $conn = getConnection();
 
-function getMovie($conn, $title) {
+function getMovie($conn, $uuid) {
   // Prepare statement to get all data related to movie of id.
-  // Here is the sql for ratings when we want it. JOIN movies_ratings ON movies.id = movies_ratings.id
-  $title = str_replace("-", " ", $title);
-  $title = str_replace("%20", " ", $title);
-  $title = str_replace("%E2%80%99", "\'", $title);
-  // $title = $conn->real_escape_string($title);
-  // $title = filter_var($title, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH); // FILTER_FLAG_STRIP_HIGH
-  echo($title);
-
-  // $sql = "SELECT movies.id, title, views, description FROM movies
-  //   JOIN movies_description ON movies.id = movies_description.id
-  //   WHERE movies.title = '" . $title . "' AND active = 1";
-  // $result = $conn->query($sql);
 
   $sql = $conn->prepare('SELECT movies.id, title, views, description FROM movies
     JOIN movies_description ON movies.id = movies_description.id
-    WHERE movies.title = ? AND active = 1');
-  $success = $sql->bind_param('s', $title);
+    WHERE movies.uuid = ? AND active = 1');
+  $success = $sql->bind_param('s', $uuid);
   $sql->execute();
   $result = $sql->get_result();
 
@@ -33,14 +21,16 @@ function getMovie($conn, $title) {
   while ($row = $result->fetch_assoc()) {
     // Store movie data and break out of loop. Should only be 1 result.
     $movie = $row;
-    break;
-  }
 
-  // We must increment our movie views on the server, plus what is being sent to the client.
-  // First we have to check if the movie data was populated.
-  if (isset($movie['views'])) {
-    incrementViews($conn, $title);
-    $movie['views'] = $movie['views'] + 1;
+    // We must increment our movie views on the server, plus what is being sent to the client.
+    // First we have to check if the movie data was populated.
+
+    if (isset($movie['views'])) {
+      incrementViews($conn, $movie['title']);
+      $movie['views'] = $movie['views'] + 1;
+    }
+
+    break;
   }
 
   // Return movie.

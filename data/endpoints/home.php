@@ -4,7 +4,7 @@ require('data/connection.php');
 $conn = getConnection();
 
 function getMostViewedMovies($conn) {
-  $sql = 'SELECT movies.id, views, title, thumbnail
+  $sql = 'SELECT movies.id, uuid, views, title, thumbnail
     FROM movies
     JOIN movies_thumbnails ON movies_thumbnails.id = movies.id
     ORDER BY views DESC
@@ -21,7 +21,7 @@ function getMostViewedMovies($conn) {
 }
 
 function getLatestMovies($conn) {
-  $sql = 'SELECT movies.id, title, thumbnail
+  $sql = 'SELECT movies.id, uuid, title, thumbnail
   FROM movies
   JOIN movies_thumbnails ON movies_thumbnails.id = movies.id
   ORDER BY added DESC
@@ -60,7 +60,7 @@ function getRandomMovies($conn) {
 }
 
 function getFeaturedMovies($conn) {
-  $sql = 'SELECT movies.id, title, image
+  $sql = 'SELECT movies.id, uuid, title, image
   FROM movies_featured
   JOIN movies
   WHERE movies.id = movies_featured.id

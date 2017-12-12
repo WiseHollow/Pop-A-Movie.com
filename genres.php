@@ -70,8 +70,8 @@ if (isset($_GET["genre"])) {
             for ($x = 0; $x < sizeof($movies); $x++) {
               // echo($movies[$x]['title'] . '<br>');
               echo('<figure class="figure">');
-              echo('<a href="/watch/' . $movies[$x]['title'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movies[$x]['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
-              echo('<figcaption class="figure-caption"><a href="/watch/' . $movies[$x]['title'] . '">' . $movies[$x]['title'] . '</a></figcaption>');
+              echo('<a href="/watch/' . $movies[$x]['uuid'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movies[$x]['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
+              echo('<figcaption class="figure-caption"><a href="/watch/' . $movies[$x]['uuid'] . '">' . $movies[$x]['title'] . '</a></figcaption>');
               echo('</figure>');
             }
           }
