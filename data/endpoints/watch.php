@@ -8,6 +8,7 @@ $conn = getConnection();
 function getMovie($conn, $title) {
   // Prepare statement to get all data related to movie of id.
   // Here is the sql for ratings when we want it. JOIN movies_ratings ON movies.id = movies_ratings.id
+  $title = str_replace("-", " ", $title);
   $title = str_replace("%20", " ", $title);
   $title = str_replace("%E2%80%99", "\'", $title);
   // $title = $conn->real_escape_string($title);

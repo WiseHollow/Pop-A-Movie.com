@@ -17,7 +17,8 @@ if (isset($movie['title'])) {
   $genres_array = getGenres($conn, $id);
   $genres = implode(', ', $genres_array);
 } else {
-  notFound();
+  // notFound();
+  echo("<br><br><br><br><br><br>" . $title);
 }
 
 ?>

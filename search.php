@@ -1,11 +1,12 @@
 <?php
 require('data/endpoints/search.php');
-$keywords = explode("?query=", $_SERVER['REQUEST_URI'])[1];
+// $keywords = explode("?query=", $_SERVER['REQUEST_URI'])[1];
+$keywords = $_POST['query'];
 
 if (strlen($keywords) >= 3) {
   $movies = getSearchResults($conn, $keywords);
 } else {
-  goHome();
+  // goHome();
 }
 
 function goHome() {

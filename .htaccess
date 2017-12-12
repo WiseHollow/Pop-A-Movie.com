@@ -1,15 +1,9 @@
-Options +FollowSymLinks
 RewriteEngine On
 
-RewriteCond %{SERVER_PORT} 80
-RewriteCond %{REQUEST_METHOD} !POST [NC]
+RewriteRule ^watch/([0-9a-zA-Z]+) watch.php?title=$1 [NC,L]
 
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^search/([0-9a-zA-Z]+) search.php?query=$1 [NC,L]
+RewriteRule ^search search.php [NC]
 
-RewriteRule ^(.*)$ $1.php
-
-RewriteRule ^search/(.*)$ ./search.php?query=$1
-RewriteRule ^watch/(.*)$ ./watch.php?id=$1
-RewriteRule ^genres/(.*)$ ./genres.php?genre=$1.php
-RewriteRule ^add-movie/(.*)$ ./add-movie.php?title=$1&url=$2&language=$3&description=$4&genres=$5&thumbnail=$6&active=$7.php
+RewriteRule ^genres/([0-9a-zA-Z]+) genres.php?genre=$1 [NC,L]
+RewriteRule ^genres genres.php [NC]
