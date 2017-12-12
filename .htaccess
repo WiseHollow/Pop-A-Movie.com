@@ -7,3 +7,5 @@ RewriteRule ^search search.php [NC]
 
 RewriteRule ^genres/([0-9a-zA-Z]+) genres.php?genre=$1 [NC,L]
 RewriteRule ^genres genres.php [NC]
+
+RewriteRule ^complaint-report complaint-report.php

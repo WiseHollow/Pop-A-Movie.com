@@ -4,9 +4,8 @@ require('data/endpoints/watch.php');
 function notFound() {
   header('Location: /404.php');
 }
-// $title = str_replace(" ", " ", explode("watch/", $_SERVER['REQUEST_URI'])[1]);
-$title = explode("watch/", $_SERVER['REQUEST_URI'])[1];
-$movie = getMovie($conn, $title);
+$movie_uuid = explode("watch/", $_SERVER['REQUEST_URI'])[1];
+$movie = getMovie($conn, $movie_uuid);
 // echo(json_encode($movie));
 if (isset($movie['title'])) {
   $id = $movie['id'];
@@ -17,8 +16,7 @@ if (isset($movie['title'])) {
   $genres_array = getGenres($conn, $id);
   $genres = implode(', ', $genres_array);
 } else {
-  // notFound();
-  echo("<br><br><br><br><br><br>" . $title);
+  notFound();
 }
 
 ?>
@@ -215,7 +213,7 @@ if (isset($movie['title'])) {
     </div>
 
     <div class="floatingDialog report-video-div text-white" id="report-video-div">
-      <form action="/complaint-report.php">
+      <form action="/complaint-report.php" method="POST">
         <h2>Copyright infringement - Complaint</h2>
         <hr>
         <h3>Who is being affected?</h3>
@@ -239,6 +237,11 @@ if (isset($movie['title'])) {
         </div>
 
         <h3>Give us some additional details.</h3>
+
+        <div class="form-group">
+          <label for="movie-title">Movie ID </label>
+          <input id="movie-uuid" type="text" name="movie-uuid" value="<?php echo($movie_uuid); ?>" class="form-control form-control-sm" readonly>
+        </div>
 
         <div class="form-group">
           <label for="company-name">Copyright Owner Name (Company Name if applicable): </label>
@@ -286,14 +289,9 @@ if (isset($movie['title'])) {
           </label>
         </div>
 
-        <div class="form-group">
-          <label for="movie-title">Movie Title </label>
-          <input id="movie-title" type="text" name="movie-title" value="<?php echo($title); ?>" class="form-control form-control-sm" readonly>
-        </div>
-
         <div class="g-recaptcha" data-sitekey="6LeAoTwUAAAAAJJxvbb1K0cezLGZvbTZwX_41jXt"></div>
 
-        <input class="btn btn-primary btn-block" type="submit" value="Submit Report">
+        <input class="btn btn-primary btn-block" type="submit" value="Submit Report" style="margin-top: 10px;">
       </form>
     </div>
 

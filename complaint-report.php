@@ -2,7 +2,13 @@
 
 require('data/keys.php');
 
-function post_captcha($user_response) {
+if (!isset($_POST['movie-uuid']) || !isset($_POST['affected']) || !isset($_POST['copyright-owner-name']) || !isset($_POST['full-legal-name']) || !isset($_POST['title']) || !isset($_POST['phone-number']) || !isset($_POST['email-address'])) {
+  $verified = false;
+} else {
+  $verified = true;
+}
+
+function post_captcha($user_response, $re_secret_key) {
     $fields_string = '';
     $fields = array(
         'secret' => $re_secret_key,
@@ -22,12 +28,6 @@ function post_captcha($user_response) {
     curl_close($ch);
 
     return json_decode($result, true);
-}
-
-if (!isset($_GET['movie-title']) || !isset($_GET['affected']) || !isset($_GET['copyright-owner-name']) || !isset($_GET['full-legal-name']) || !isset($_GET['title']) || !isset($_GET['phone-number']) || !isset($_GET['email-address'])) {
-  $verified = false;
-} else {
-  $verified = true;
 }
 
 ?>
@@ -77,29 +77,29 @@ if (!isset($_GET['movie-title']) || !isset($_GET['affected']) || !isset($_GET['c
             if ($verified) {
 
               // Call the function post_captcha
-              $res = post_captcha($_GET['g-recaptcha-response']);
-
+              $res = post_captcha($_POST['g-recaptcha-response'], $re_secret_key);
+              // $res['success'] = true;
               if (!$res['success']) {
                   echo '<p>Please go back and make sure you check the security CAPTCHA box.</p><br>';
               } else {
                 include('data/endpoints/complaint-report.php');
                 $conn = getConnection();
 
-                $movie_title = $conn->real_escape_string($_GET['movie-title']);
-                $affected = (int) $conn->real_escape_string($_GET['affected']);
-                $company = $conn->real_escape_string($_GET['copyright-owner-name']);
-                $legal_name = $conn->real_escape_string($_GET['full-legal-name']);
-                $title = $conn->real_escape_string($_GET['title']);
-                $phone_number = $conn->real_escape_string($_GET['phone-number']);
-                $email = $conn->real_escape_string($_GET['email-address']);
+                $movie_uuid = $conn->real_escape_string($_POST['movie-uuid']);
+                $affected = (int) $conn->real_escape_string($_POST['affected']);
+                $company = $conn->real_escape_string($_POST['copyright-owner-name']);
+                $legal_name = $conn->real_escape_string($_POST['full-legal-name']);
+                $title = $conn->real_escape_string($_POST['title']);
+                $phone_number = $conn->real_escape_string($_POST['phone-number']);
+                $email = $conn->real_escape_string($_POST['email-address']);
 
-                $response = recordComplaint($conn, $movie_title, $affected, $company, $title, $legal_name, $phone_number, $email);
+                $response = recordComplaint($conn, $movie_uuid, $affected, $company, $title, $legal_name, $phone_number, $email);
 
                 if ($response == 0) {
                   echo('<br>Error when submitting complaint report. Please contact support about this problem.');
                 } else {
                   echo("<p>Thanks! We've received your legal request.</p> <p>We've sent you a verification email about this case. If we comply with your notice in full, you will not receive any further emails about it. </p>");
-                  sendEmail($email, $legal_name, $movie_title);
+                  sendEmail($email, $legal_name);
                 }
               }
             } else {
