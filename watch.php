@@ -161,22 +161,23 @@ if (isset($movie['title'])) {
             </div>
             <div class="col-2"></div>
           </div>
-          <div class="row text-muted" align="center">
-            <div class="col-2"></div>
-            <?php
-            // $server = 'Openload.co';
-            foreach ($urls as $url) {
+          <?php
+          foreach ($urls as $url) {
 
-              $server = ucfirst(explode("/", $url['url'])[2]);
+            $server = ucfirst(explode("/", $url['url'])[2]);
 
-              echo('<div class="col-2 table-body"><p>' . $server . '</p></div>');
-              echo('<div class="col-2 table-body"><p>' . $url['language'] . '</p></div>');
-              echo('<div class="col-2 table-body"><input type="button" class="btn btn-success" value="Download" onClick="download(\'' . $url['url'] . '\')"></div>');
-              echo('<div class="col-2 table-body"><p id="link- ">' . (isLinkOkay($url['url']) ? 'UP' : 'DOWN') . '</p></div>');
-            }
-            ?>
-            <div class="col-2"></div>
-          </div>
+            echo('<div class="row text-muted" align="center">');
+            echo('<div class="col-2"></div>');
+
+            echo('<div class="col-2 table-body"><p>' . $server . '</p></div>');
+            echo('<div class="col-2 table-body"><p>' . $url['language'] . '</p></div>');
+            echo('<div class="col-2 table-body"><input type="button" class="btn btn-success" value="Download" onClick="download(\'' . $url['url'] . '\')"></div>');
+            echo('<div class="col-2 table-body"><p id="link- ">' . (isLinkOkay($url['url']) ? 'UP' : 'DOWN') . '</p></div>');
+
+            echo('<div class="col-2"></div>');
+            echo('</div>');
+          }
+          ?>
         </div>
       </div>
     </div>
