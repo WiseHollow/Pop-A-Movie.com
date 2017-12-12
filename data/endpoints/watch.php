@@ -7,7 +7,7 @@ $conn = getConnection();
 
 function getMovie($conn, $uuid) {
   // Prepare statement to get all data related to movie of id.
-
+  $uuid = $conn->real_escape_string($uuid);
   $sql = $conn->prepare('SELECT movies.id, title, views, description FROM movies
     JOIN movies_description ON movies.id = movies_description.id
     WHERE movies.uuid = ? AND active = 1');
