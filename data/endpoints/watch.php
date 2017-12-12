@@ -137,6 +137,27 @@ function getCountries($conn, $id) {
   return $countries;
 }
 
+include('data/lib/simple_html_dom.php');
+
+function isLinkOkay($url) {
+  $string = file_get_contents($url);
+  if (preg_match('/id="olvideo"/', $string, $matches) > 0) {
+      return true;
+  }
+  return false;
+}
+
+function get_page_title($url){
+
+  if( !($data = file_get_contents($url)) ) return false;
+
+  if( preg_match("#<title>(.+)<\/title>#iU", $data, $t))  {
+  return trim($t[1]);
+  } else {
+  return false;
+  }
+}
+
 function thumbsUp($conn, $id) {
   // TODO: Requires IP address to be checked.
 }

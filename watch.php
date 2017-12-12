@@ -172,8 +172,7 @@ if (isset($movie['title'])) {
               echo('<div class="col-2 table-body"><p>' . $server . '</p></div>');
               echo('<div class="col-2 table-body"><p>' . $url['language'] . '</p></div>');
               echo('<div class="col-2 table-body"><input type="button" class="btn btn-success" value="Download" onClick="download(\'' . $url['url'] . '\')"></div>');
-              echo('<div class="col-2 table-body"><p>UP</p></div>');
-              // <input type="button" class="btn btn-success" value="View">
+              echo('<div class="col-2 table-body"><p id="link- ">' . (isLinkOkay($url['url']) ? 'UP' : 'DOWN') . '</p></div>');
             }
             ?>
             <div class="col-2"></div>
