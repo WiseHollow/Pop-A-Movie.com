@@ -85,6 +85,9 @@ $featured_movies = getFeaturedMovies($conn);
             <?php
             foreach ($most_viewed as $movie) {
               echo('<figure class="figure">');
+              if ($movie['genre_id'] == 22) {
+                echo('<span class="movie_overlay">18+</span>');
+              }
               echo('<a href="/watch/' . $movie['uuid'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
               echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['uuid'] . '">' . $movie['title'] . '</a></figcaption>');
               echo('</figure>');
@@ -157,6 +160,9 @@ $featured_movies = getFeaturedMovies($conn);
             <?php
             foreach ($latest_movies as $movie) {
               echo('<figure class="figure">');
+              if ($movie['genre_id'] == 22) {
+                echo('<span class="movie_overlay">18+</span>');
+              }
               echo('<a href="/watch/' . $movie['uuid'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movie['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
               echo('<figcaption class="figure-caption title"><a href="/watch/' . $movie['uuid'] . '">' . $movie['title'] . '</a></figcaption>');
               echo('</figure>');

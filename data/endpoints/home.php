@@ -4,9 +4,10 @@ require('data/connection.php');
 $conn = getConnection();
 
 function getMostViewedMovies($conn) {
-  $sql = 'SELECT movies.id, uuid, views, title, thumbnail
+  $sql = 'SELECT movies.id, uuid, views, title, thumbnail, genre_id
     FROM movies
     JOIN movies_thumbnails ON movies_thumbnails.id = movies.id
+    LEFT JOIN movies_genres ON movies_genres.movie_id = movies.id AND movies_genres.genre_id = 22
     ORDER BY views DESC
     LIMIT 16';
 
@@ -21,9 +22,10 @@ function getMostViewedMovies($conn) {
 }
 
 function getLatestMovies($conn) {
-  $sql = 'SELECT movies.id, uuid, title, thumbnail
+  $sql = 'SELECT movies.id, uuid, title, thumbnail, genre_id
   FROM movies
   JOIN movies_thumbnails ON movies_thumbnails.id = movies.id
+  LEFT JOIN movies_genres ON movies_genres.movie_id = movies.id AND movies_genres.genre_id = 22
   ORDER BY added DESC
   LIMIT 16';
 
