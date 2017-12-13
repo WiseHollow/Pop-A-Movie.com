@@ -60,7 +60,6 @@ if (isset($_GET["genre"])) {
           if (isset($genres)) {
             for ($x = 0; $x < sizeof($genres); $x++) {
               // Lets create all the thumbnails for each genre
-              // echo($genres[$x] . "<br>");
               echo('<figure class="figure">');
               echo('<a href="/genres/' . $genres[$x] . '"><img src="' . generateThumbnailUrl($genres[$x], $thumbnails) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
               echo('<figcaption class="figure-caption"><a href="#">' . $genres[$x] . '</a></figcaption>');
@@ -68,8 +67,10 @@ if (isset($_GET["genre"])) {
             }
           } else if (isset($movies)) {
             for ($x = 0; $x < sizeof($movies); $x++) {
-              // echo($movies[$x]['title'] . '<br>');
               echo('<figure class="figure">');
+              if ($movies[$x]['genre_id'] == 22) {
+                echo('<span class="movie_overlay">18+</span>');
+              }
               echo('<a href="/watch/' . $movies[$x]['uuid'] . '"><img src="data:image/jpeg;base64,' . base64_encode($movies[$x]['thumbnail']) . '" class="figure-img img-fluid rounded movie-thumbnail"></a>');
               echo('<figcaption class="figure-caption"><a href="/watch/' . $movies[$x]['uuid'] . '">' . $movies[$x]['title'] . '</a></figcaption>');
               echo('</figure>');

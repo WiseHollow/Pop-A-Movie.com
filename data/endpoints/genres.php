@@ -55,7 +55,8 @@ function getAllGenreThumbnails($conn) {
 function getMovies($conn, $genre) {
   $genre_id = getGenreId($conn, $genre);
   // Prepare to get all movies with that genre id.
-  $sql = $conn->prepare('SELECT * FROM movies
+  $sql = $conn->prepare('SELECT movies.id, uuid, views, title, thumbnail, genre_id
+    FROM movies
     JOIN movies_genres ON movies_genres.genre_id = ?
     JOIN movies_thumbnails ON movies_thumbnails.id = movies_genres.movie_id
     WHERE movies.id = movies_genres.movie_id
