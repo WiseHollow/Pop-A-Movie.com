@@ -49,7 +49,7 @@ $featured_movies = getFeaturedMovies($conn);
           <?php
           for ($index = 0; $index < sizeof($featured_movies); $index++) {
             $movie = $featured_movies[$index];
-            echo('<a href="/watch/' . $movie['title'] . '"><span class="featured-movie" style="left: ' . (25 + 625 * $index) . 'px;"><p>' . $movie['title'] . '</p></span><img class="video-thumbnail-large" src="data:image/jpeg;base64,' . base64_encode($movie['image']) . '"></a>');
+            echo('<a href="/watch/' . $movie['uuid'] . '"><span class="featured-movie" style="left: ' . (25 + 625 * $index) . 'px;"><p>' . $movie['title'] . '</p></span><img class="video-thumbnail-large" src="data:image/jpeg;base64,' . base64_encode($movie['image']) . '"></a>');
           }
           ?>
         </div>
