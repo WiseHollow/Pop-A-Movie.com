@@ -12,6 +12,7 @@ $featured_movies = getFeaturedMovies($conn);
   <head>
     <title>Pop A Movie - Home</title>
     <meta charset="utf-8">
+	<meta name="author" content="John Brooks">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Pathway+Gothic+One" rel="stylesheet">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
